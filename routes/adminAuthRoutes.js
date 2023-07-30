@@ -5,3 +5,5 @@ const { adminLogin, adminSignup } = require('../controllers/adminAuthController'
 router.route('/adminlogin').post(adminLogin);
 router.route('/adminsignup').post(adminSignup);
 
+
+module.exports = router;
