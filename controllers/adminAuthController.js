@@ -6,16 +6,35 @@ const adminSignup = async (req, res) => {
         res.json("Missing credentials")
     }
     const admin = await AdminModel.create({ email, name, password });
-    console.log(admin._id)
-    const token = jwt.sign({ adminId: admin._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ adminId: admin._id }, process.env.JWT_ADMIN_SECRET, {
         expiresIn: process.env.JWT_LIFETIME
     })
-    res.status(201).json({ admin, token })
+    res.status(201).json({
+        user: {
+            email: email,
+            name: name,
+            token
+        }
+    })
 }
-const adminLogin = (req, res) => {
-
-
-
+const adminLogin = async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        res.json("Missing credentials")
+    }
+    const admin = await AdminModel.findOne({ email });
+    if (!admin) {
+        res.status(404).json({ msg: "Admin not found" });
+    }
+    const token = jwt.sign({ adminId: admin._id }, process.env.JWT_ADMIN_SECRET, {
+        expiresIn: process.env.JWT_LIFETIME
+    })
+    res.status(201).json({
+        user: {
+            email: email,
+            token
+        }
+    })
 }
 
 module.exports = {
