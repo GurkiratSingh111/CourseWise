@@ -7,6 +7,7 @@ const adminAuthRouter = require('./routes/adminAuthRoutes')
 const userAuthRouter = require('./routes/userAuthRoutes')
 const connectDB = require('./db/connect');
 
+app.use(express.json());
 app.use('/api/v1', adminAuthRouter);
 app.use('/api/v1', userAuthRouter);
 
