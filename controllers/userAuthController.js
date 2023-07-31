@@ -5,7 +5,7 @@ const userSignup = async (req, res) => {
     if (!email || !password || !name) {
         res.json("Missing credentials")
     }
-    const existingUser = await AdminModel.findOne({ email });
+    const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
         res.status(404).json({ msg: "User already exists" });
     }
