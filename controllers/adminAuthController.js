@@ -5,6 +5,10 @@ const adminSignup = async (req, res) => {
     if (!email || !password || !name) {
         res.json("Missing credentials")
     }
+    const existingAdmin = await AdminModel.findOne({ email });
+    if (existingAdmin) {
+        res.status(404).json({ msg: "Admin already exists" });
+    }
     const admin = await AdminModel.create({ email, name, password });
     const token = jwt.sign({ adminId: admin._id }, process.env.JWT_ADMIN_SECRET, {
         expiresIn: process.env.JWT_LIFETIME

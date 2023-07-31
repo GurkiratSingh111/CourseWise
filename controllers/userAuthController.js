@@ -5,6 +5,10 @@ const userSignup = async (req, res) => {
     if (!email || !password || !name) {
         res.json("Missing credentials")
     }
+    const existingUser = await AdminModel.findOne({ email });
+    if (existingUser) {
+        res.status(404).json({ msg: "User already exists" });
+    }
     const user = await UserModel.create({ email, name, password });
     const token = jwt.sign({ userId: user._id }, process.env.JWT_USER_SECRET, {
         expiresIn: process.env.JWT_LIFETIME
