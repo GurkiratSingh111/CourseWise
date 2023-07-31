@@ -31,7 +31,8 @@ const adminLogin = async (req, res) => {
     })
     res.status(201).json({
         user: {
-            email: email,
+            email: admin.email,
+            name: admin.name,
             token
         }
     })
