@@ -1,13 +1,27 @@
+require('dotenv').config();
+require('express-async-errors')
 const express = require('express');
+
 const app = express();
 const adminAuthRouter = require('./routes/adminAuthRoutes')
 const userAuthRouter = require('./routes/userAuthRoutes')
+const connectDB = require('./db/connect');
 
 app.use('/api/v1', adminAuthRouter);
 app.use('/api/v1', userAuthRouter);
 
-const PORT = 4000;
-app.listen(PORT, () => {
-    console.log(`Server is listening on PORT ${PORT}`);
-})
+const PORT = process.env.PORT || 4000;
 
+const startServer = async () => {
+    try {
+        await connectDB(process.env.MONGO_URI);
+        console.log("Successfully connected to the database")
+        app.listen(PORT, () => {
+            console.log(`Server is listening on PORT ${PORT}`);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+startServer();
