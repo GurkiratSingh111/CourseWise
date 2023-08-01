@@ -23,12 +23,13 @@ const CourseSchema = new mongoose.Schema({
     },
     published: {
         type: Boolean,
+        default: false,
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Admin',
         required: [true, 'Please provide admin'],
     },
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model("Course", CourseSchema);

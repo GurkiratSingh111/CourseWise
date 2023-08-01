@@ -13,7 +13,7 @@ const adminSignup = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
     const admin = await AdminModel.create({ email, name, password: hashPassword });
-    const token = jwt.sign({ adminId: admin._id }, process.env.JWT_ADMIN_SECRET, {
+    const token = jwt.sign({ userId: admin._id }, process.env.JWT_ADMIN_SECRET, {
         expiresIn: process.env.JWT_LIFETIME
     })
     res.status(201).json({
@@ -37,7 +37,7 @@ const adminLogin = async (req, res) => {
     if (!isPasswordCorrect) {
         res.json("Invalid Credentials");
     }
-    const token = jwt.sign({ adminId: admin._id }, process.env.JWT_ADMIN_SECRET, {
+    const token = jwt.sign({ userId: admin._id }, process.env.JWT_ADMIN_SECRET, {
         expiresIn: process.env.JWT_LIFETIME
     })
     res.status(201).json({
