@@ -25,7 +25,7 @@ const CourseSchema = new mongoose.Schema({
         type: Boolean,
     },
     createdBy: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Admin',
         required: [true, 'Please provide admin'],
     },
