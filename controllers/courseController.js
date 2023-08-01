@@ -13,7 +13,10 @@ const deleteCourse = (req, res) => {
 const addCourse = (req, res) => {
     res.send("Add course");
 }
+const getAdminCourse = (req, res) => {
+    res.send("Get Admin Course");
+}
 
 module.exports = {
-    addCourse, deleteCourse, updateCourse, getAllCourses, getCourse
+    addCourse, deleteCourse, updateCourse, getAllCourses, getCourse, getAdminCourse
 }
