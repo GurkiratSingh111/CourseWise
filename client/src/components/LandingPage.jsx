@@ -74,7 +74,7 @@ const LandingPage = () => {
         //         <div style={{ width: "50%", height: "800px", backgroundImage: `url(${homeImage})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", left: "50%", top: "0px", position: "fixed", backgroundPosition: "center" }}></div>
         //     </Hidden>
         // </div>
-        <div style={{ top: "63px", width: "100%", height: "100%", display: "flex", flexDirection: "column", left: "0px", overflowY: "scroll" }}>
+        <div style={{ top: "63px", width: "100%", height: "100%", display: "flex", flexDirection: "column", left: "0px", overflowY: "scroll", overflowX: "hidden" }}>
             <div style={{ top: "63px", width: "100%", height: "700px", display: "flex" }}>
                 <div style={{ width: mdSize ? "50%" : "100%", backgroundColor: "black", color: "white", display: "flex", flexDirection: "column", fontFamily: "serif" }}>
                     <h1 style={{ fontWeight: 900, width: "80%", fontSize: "xxx-large", marginTop: "160px", marginLeft: "55px", marginBottom: '15px' }}>Find your <span style={{ color: "#1fa95b" }}>perfect </span>course & grow your <span style={{ color: "#1fa95b" }}>skill.</span></h1>
@@ -95,22 +95,21 @@ const LandingPage = () => {
                     <div style={{ width: "50%", backgroundImage: `url(${homeImage})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></div>
                 </Hidden>
             </div>
-            <div style={{ width: "100%", height: "160px", backgroundColor: "white", top: "800px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div style={{ width: "100%", height: "150px", backgroundColor: "white", top: "800px", display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <h1 style={{ fontWeight: 900 }}>Our Sponsors</h1>
-                <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-                    <img src={amazonLogo} alt="" style={{
-                        height: "100px", width: !smSize ? "100%" : "180px", margin: "2rem", marginRight: "4rem"
-                    }} />
-                    <img src={appleLogo} alt="" style={{ height: "100px", width: !smSize ? "100%" : "180px", margin: "2rem", marginRight: "4rem" }} />
-                    <img src={googleLogo} alt="" style={{ height: "100px", width: !smSize ? "100%" : "120px", margin: "2rem", marginRight: "4rem" }} />
-                    <img src={spotifyLogo} alt="" style={{ height: "100px", width: !smSize ? "100%" : "180px", margin: "2rem", marginRight: "4rem" }} />
-                    <img src={slackLogo} alt="" style={{ height: "100px", width: !smSize ? "100%" : "180px", margin: "2rem", marginRight: "4rem" }} />
+                <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
+                    <img src={amazonLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
+                    <img src={appleLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
+                    <img src={googleLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
+                    <img src={spotifyLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
+                    <img src={slackLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
                 </div>
             </div>
-            <hr />
-
+            <hr style={{ backgroundColor: "grey", height: "6px", width: "100vw", margin: " 100px 0px 0px" }} />
+            <div style={{ display: "flex", justifyContent: "center", margin: "20px" }}>
+                <Typography>Achieve Your Goals With CourseWise</Typography>
+            </div>
         </div>
-
     )
 }
 
