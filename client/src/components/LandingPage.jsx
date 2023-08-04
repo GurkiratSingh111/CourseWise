@@ -1,10 +1,16 @@
 import { Button, Grid, Hidden, Typography, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react';
 import homeImage from '../images/homeImage.png'
+import amazonLogo from '../images/amazon_logo.png';
+import appleLogo from '../images/apple_logo.png';
+import googleLogo from '../images/google_logo.png';
+import spotifyLogo from '../images/spotify_logo.jpeg';
+import slackLogo from '../images/Slack_logo.png';
 
 const LandingPage = () => {
     const theme = useTheme();
     const mdSize = useMediaQuery(theme.breakpoints.up('md'))
+    const smSize = useMediaQuery(theme.breakpoints.up('sm'))
     return (
         // <div style={{ overflowX: "hidden", display: "flex", flexWrap: "wrap", backgroundImage: `url(${landingImage})`, height: "100vh", width: "80vw", backgroundRepeat: "no-repeat", }}>
         //     <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -76,7 +82,7 @@ const LandingPage = () => {
                     <Button
                         style={{
                             marginLeft: "50px",
-                            width: "20%",
+                            width: "30%",
                             color: "white",
                             textTransform: 'none',
                             backgroundColor: "#fcb83b",
@@ -89,7 +95,19 @@ const LandingPage = () => {
                     <div style={{ width: "50%", backgroundImage: `url(${homeImage})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></div>
                 </Hidden>
             </div>
-            <div style={{ width: "100%", height: "200px", backgroundColor: "red", top: "800px" }}>aaaalaalalalalalalalalaalfffff</div>
+            <div style={{ width: "100%", height: "160px", backgroundColor: "white", top: "800px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <h1 style={{ fontWeight: 900 }}>Our Sponsors</h1>
+                <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+                    <img src={amazonLogo} alt="" style={{
+                        height: "100px", width: !smSize ? "100%" : "180px", margin: "2rem", marginRight: "4rem"
+                    }} />
+                    <img src={appleLogo} alt="" style={{ height: "100px", width: !smSize ? "100%" : "180px", margin: "2rem", marginRight: "4rem" }} />
+                    <img src={googleLogo} alt="" style={{ height: "100px", width: !smSize ? "100%" : "120px", margin: "2rem", marginRight: "4rem" }} />
+                    <img src={spotifyLogo} alt="" style={{ height: "100px", width: !smSize ? "100%" : "180px", margin: "2rem", marginRight: "4rem" }} />
+                    <img src={slackLogo} alt="" style={{ height: "100px", width: !smSize ? "100%" : "180px", margin: "2rem", marginRight: "4rem" }} />
+                </div>
+            </div>
+            <hr />
 
         </div>
 
