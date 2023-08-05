@@ -121,7 +121,7 @@ const LandingPage = () => {
                     boxShadow: "4px 4px 4px white",
                 }}>Explore All Courses</Button>
             </div>
-            <div style={{ backgroundColor: "white", width: "100vw", height: "25rem", marginTop: "4rem", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "0.2rem" }}>
+            <div style={{ backgroundColor: "white", width: "100vw", height: "32rem", marginTop: "4rem", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "0.2rem" }}>
                 <img src={Instructor} alt="" style={{ height: "18rem" }} />
                 <div style={{ display: "flex", flexDirection: "column", width: "25%", marginLeft: "2rem" }}>
                     <Typography variant='h5' style={{ fontWeight: 900 }}>Become an instructor</Typography>
@@ -129,7 +129,16 @@ const LandingPage = () => {
                     <Button style={{ backgroundColor: "#fcb83b", color: "black", marginTop: "1.5rem", marginBottom: "1rem" }}>Start teaching today</Button>
                 </div>
             </div>
-            <div style={{ backgroundColor: "black" }}>
+            <div style={{ color: "grey", backgroundColor: "black", height: "14rem", width: "100vw", display: "flex", justifyContent: "space-between" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <Typography style={{ marginLeft: "2rem", marginTop: "3rem" }}>CourseWise</Typography>
+                    <Typography style={{ marginLeft: "2rem", marginTop: "1rem" }}>© 2023 CopyRight and All Rights Reserved</Typography>
+                </div>
+                <div style={{ display: 'flex', flexDirection: "row", margin: "3rem" }}>
+                    <span style={{ marginRight: "2rem" }} >Privacy Policy</span>
+                    <span >Website Terms</span>
+                </div>
+
             </div>
         </div>
     )
