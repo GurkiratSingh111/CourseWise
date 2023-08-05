@@ -1,16 +1,43 @@
-import { Button, Grid, Hidden, Typography, useMediaQuery, useTheme } from '@mui/material'
-import React from 'react';
+import { Button, Card, CardContent, CardMedia, Grid, Hidden, Typography, useMediaQuery, useTheme } from '@mui/material'
+import React, { useEffect, useState } from 'react';
 import homeImage from '../images/homeImage.png'
 import amazonLogo from '../images/amazon_logo.png';
 import appleLogo from '../images/apple_logo.png';
 import googleLogo from '../images/google_logo.png';
 import spotifyLogo from '../images/spotify_logo.jpeg';
-import slackLogo from '../images/Slack_logo.png';
-
+import slackLogo from '../images/Slack.logo.png';
+import CourseCard from './CourseCard';
+import { Carousel } from 'react-responsive-carousel';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+import axios from 'axios'
+import { Link } from 'react-router-dom';
 const LandingPage = () => {
+    const [courses, setCourses] = useState([]);
+    const fetchData = async () => {
+        const response = await axios.get("http://localhost:4000/api/v1/courses");
+        console.log(response.data.courses)
+        setCourses(response.data.courses);
+    }
+    useEffect(() => {
+        fetchData();
+    }, [])
+    const items = courses.map(course => {
+        console.log(course);
+        return (<Link>
+            <CourseCard course={course} />
+        </Link>);
+    })
+    const responsive = {
+        0: {
+            items: 1,
+        },
+        512: {
+            items: 3,
+        }
+    }
     const theme = useTheme();
     const mdSize = useMediaQuery(theme.breakpoints.up('md'))
-    const smSize = useMediaQuery(theme.breakpoints.up('sm'))
     return (
         <div style={{ top: "63px", width: "100%", height: "100%", display: "flex", flexDirection: "column", left: "0px", overflowY: "scroll", overflowX: "hidden" }}>
             <div style={{ top: "63px", width: "100%", height: "700px", display: "flex" }}>
@@ -21,7 +48,6 @@ const LandingPage = () => {
                         style={{
                             marginLeft: "50px",
                             width: "30%",
-                            color: "white",
                             textTransform: 'none',
                             backgroundColor: "#fcb83b",
                             color: 'black',
@@ -44,7 +70,7 @@ const LandingPage = () => {
                 </div>
             </div>
             <hr style={{ backgroundColor: "grey", height: "6px", width: "100vw", margin: " 100px 0px 0px" }} />
-            <div style={{ display: "flex", justifyContent: "center", margin: "20px", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center", margin: "20px", flexDirection: "column", alignItems: "center" }}>
                 <Typography variant="h4" style={{ fontWeight: 900, marginTop: "30px" }}>Achieve Your Goals With CourseWise</Typography>
                 <Typography variant='h6' style={{ width: "80%", color: "#7d8c95" }}>Explore, Learn, Excel: Your Gateway to Skillful Success! Discover a vast array of courses tailored to elevate your expertise.</Typography>
             </div>
@@ -69,8 +95,23 @@ const LandingPage = () => {
                 </div>
 
             </div>
-            <hr style={{ color: "grey", height: "9px", width: "100vw", marginTop: "20px" }} />
-            <div></div>
+            <hr style={{ backgroundColor: "grey", height: "9px", width: "100vw", marginTop: "20px", marginBottom: "0px" }} />
+            <div style={{ backgroundColor: "black", width: "100vw", height: "40rem", marginTop: "0px", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
+                <Typography variant="h3" style={{ color: "white", fontWeight: 900, fontFamily: "serif", marginTop: "1rem", marginBottom: "0px" }}>Our most popular & demanded courses </Typography>
+                <div style={{ display: "flex", marginTop: "0px", height: "30rem", width: "100%", alignItems: "center", flexDirection: "row" }}>
+                    <AliceCarousel style={{ marginTop: "0px" }}
+                        mouseTracking
+                        autoPlay
+                        autoFocus
+                        infinite
+                        autoPlayInterval={1000}
+                        animationDuration={1500}
+                        disableButtonsControls
+                        disableDotsControls
+                        responsive={responsive}
+                        items={items} />
+                </div>
+            </div>
         </div>
     )
 }
