@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardMedia, Grid, Hidden, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Button, Hidden, Typography, useMediaQuery, useTheme } from '@mui/material'
 import React, { useEffect, useState } from 'react';
 import homeImage from '../images/homeImage.png'
 import amazonLogo from '../images/amazon_logo.png';
@@ -7,11 +7,10 @@ import googleLogo from '../images/google_logo.png';
 import spotifyLogo from '../images/spotify_logo.jpeg';
 import slackLogo from '../images/Slack.logo.png';
 import CourseCard from './CourseCard';
-import { Carousel } from 'react-responsive-carousel';
 import AliceCarousel from 'react-alice-carousel';
+import Instructor from '../images/instructor.png'
 import 'react-alice-carousel/lib/alice-carousel.css';
 import axios from 'axios'
-import { Link } from 'react-router-dom';
 const LandingPage = () => {
     const [courses, setCourses] = useState([]);
     const fetchData = async () => {
@@ -24,15 +23,15 @@ const LandingPage = () => {
     }, [])
     const items = courses.map(course => {
         console.log(course);
-        return (<Link>
+        return (
             <CourseCard course={course} />
-        </Link>);
+        );
     })
     const responsive = {
         0: {
             items: 1,
         },
-        512: {
+        900: {
             items: 3,
         }
     }
@@ -60,7 +59,7 @@ const LandingPage = () => {
                 </Hidden>
             </div>
             <div style={{ width: "100%", height: "150px", backgroundColor: "white", top: "800px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <h1 style={{ fontWeight: 900, fontFamily: "serif", fontSize: "xxx-large" }}>Our Sponsors</h1>
+                <h1 style={{ fontWeight: 900, fontFamily: "serif", fontSize: "xx-large" }}>Our Sponsors</h1>
                 <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
                     <img src={amazonLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
                     <img src={appleLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
@@ -96,9 +95,9 @@ const LandingPage = () => {
 
             </div>
             <hr style={{ backgroundColor: "grey", height: "9px", width: "100vw", marginTop: "20px", marginBottom: "0px" }} />
-            <div style={{ backgroundColor: "black", width: "100vw", height: "40rem", marginTop: "0px", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
+            <div style={{ backgroundColor: "black", maxWidth: "100vw", height: "45rem", marginTop: "0px", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
                 <Typography variant="h3" style={{ color: "white", fontWeight: 900, fontFamily: "serif", marginTop: "1rem", marginBottom: "0px" }}>Our most popular & demanded courses </Typography>
-                <div style={{ display: "flex", marginTop: "0px", height: "30rem", width: "100%", alignItems: "center", flexDirection: "row" }}>
+                <div style={{ display: "flex", marginTop: "0px", height: "30rem", maxWidth: "90%", alignItems: "center", flexDirection: "row", justifyContent: "center" }}>
                     <AliceCarousel style={{ marginTop: "0px" }}
                         mouseTracking
                         autoPlay
@@ -111,6 +110,26 @@ const LandingPage = () => {
                         responsive={responsive}
                         items={items} />
                 </div>
+                <Button style={{
+                    marginLeft: "50px",
+                    width: "30%",
+                    textTransform: 'none',
+                    backgroundColor: "#fcb83b",
+                    color: 'black',
+                    fontWeight: '900',
+                    marginBottom: "3rem",
+                    boxShadow: "4px 4px 4px white",
+                }}>Explore All Courses</Button>
+            </div>
+            <div style={{ backgroundColor: "white", width: "100vw", height: "25rem", marginTop: "4rem", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "0.2rem" }}>
+                <img src={Instructor} alt="" style={{ height: "18rem" }} />
+                <div style={{ display: "flex", flexDirection: "column", width: "25%", marginLeft: "2rem" }}>
+                    <Typography variant='h5' style={{ fontWeight: 900 }}>Become an instructor</Typography>
+                    <Typography variant='body'>Instructor from around the world teach millions of students on CourseWise. We provide the tools and skills to teach what you love.</Typography>
+                    <Button style={{ backgroundColor: "#fcb83b", color: "black", marginTop: "1.5rem", marginBottom: "1rem" }}>Start teaching today</Button>
+                </div>
+            </div>
+            <div style={{ backgroundColor: "black" }}>
             </div>
         </div>
     )

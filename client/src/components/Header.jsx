@@ -382,9 +382,9 @@ const Header = () => {
         <Box>
             <CssBaseline />
             <AppBar component="nav"
-                style={{ background: '#22282a', position: "fixed" }}>
+                style={{ background: '#22282a', position: "fixed", fontFamily: "serif" }}>
                 <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-                    <Typography variant="h5" display="block" style={{ fontWeight: 900, fontFamily: "revert", cursor: "pointer" }}>
+                    <Typography variant="h5" display="block" style={{ fontWeight: 900, fontFamily: "serif", cursor: "pointer" }}>
                         CourseWise
                     </Typography>
                     <Hidden mdUp>
@@ -525,7 +525,7 @@ const Header = () => {
                     }}>{drawer}
                 </Drawer>
             </Box>
-        </Box>
+        </Box >
     )
 }
 
