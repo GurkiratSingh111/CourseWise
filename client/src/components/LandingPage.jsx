@@ -11,7 +11,9 @@ import AliceCarousel from 'react-alice-carousel';
 import Instructor from '../images/instructor.png'
 import 'react-alice-carousel/lib/alice-carousel.css';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 const LandingPage = () => {
+    const navigate = useNavigate();
     const [courses, setCourses] = useState([]);
     const fetchData = async () => {
         const response = await axios.get("http://localhost:4000/api/v1/courses");
@@ -110,16 +112,17 @@ const LandingPage = () => {
                         responsive={responsive}
                         items={items} />
                 </div>
-                <Button style={{
-                    marginLeft: "50px",
-                    width: "30%",
-                    textTransform: 'none',
-                    backgroundColor: "#fcb83b",
-                    color: 'black',
-                    fontWeight: '900',
-                    marginBottom: "3rem",
-                    boxShadow: "4px 4px 4px white",
-                }}>Explore All Courses</Button>
+                <Button onClick={() => navigate('/allcourses')}
+                    style={{
+                        marginLeft: "50px",
+                        width: "30%",
+                        textTransform: 'none',
+                        backgroundColor: "#fcb83b",
+                        color: 'black',
+                        fontWeight: '900',
+                        marginBottom: "3rem",
+                        boxShadow: "4px 4px 4px white",
+                    }}>Explore All Courses</Button>
             </div>
             <div style={{ backgroundColor: "white", width: "100vw", height: "32rem", marginTop: "4rem", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "0.2rem" }}>
                 <img src={Instructor} alt="" style={{ height: "18rem" }} />

@@ -4,6 +4,7 @@ import RootLayout from './components/RootLayout';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import LandingPage from './components/LandingPage';
+import AllCourses from './components/AllCourses';
 
 const router = createBrowserRouter([
   {
@@ -11,10 +12,11 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <LandingPage /> },
-      { path: "/login", element: <LoginPage /> },
-      { path: "/signup", element: <SignupPage /> },
-    ]
-  }
+      { path: "/allcourses", element: <AllCourses /> }
+    ],
+  },
+  { path: "/login", element: <LoginPage /> },
+  { path: "/signup", element: <SignupPage /> },
 
 ]);
 
