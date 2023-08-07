@@ -54,7 +54,8 @@ const LandingPage = () => {
                             color: 'black',
                             fontWeight: '900',
                             boxShadow: "4px 4px 4px white"
-                        }}>Get Started</Button>
+                        }}
+                        onClick={() => { navigate('/signup') }}>Get Started</Button>
                 </div>
                 <Hidden mdDown>
                     <div style={{ width: "50%", backgroundImage: `url(${homeImage})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></div>
@@ -134,16 +135,15 @@ const LandingPage = () => {
             </div>
             <div style={{ color: "grey", backgroundColor: "black", height: "14rem", width: "100vw", display: "flex", justifyContent: "space-between" }}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    <Typography style={{ marginLeft: "2rem", marginTop: "3rem" }} onClick={navigate('/')}>CourseWise</Typography>
+                    <Typography style={{ marginLeft: "2rem", marginTop: "3rem" }} onClick={() => { navigate('/') }}>CourseWise</Typography>
                     <Typography style={{ marginLeft: "2rem", marginTop: "1rem" }}>© 2023 CopyRight and All Rights Reserved</Typography>
                 </div>
                 <div style={{ display: 'flex', flexDirection: "row", margin: "3rem" }}>
                     <span style={{ marginRight: "2rem" }} >Privacy Policy</span>
-                    <span >Website Terms</span>
+                    <span>Website Terms</span>
                 </div>
-
             </div>
-        </div>
+        </div >
     )
 }
 

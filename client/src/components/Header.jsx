@@ -127,7 +127,7 @@ const Header = () => {
                                     width: '100%'
                                 }
                             }}
-                            ><a href="/#about" style={{ color: "white", textDecoration: 'none' }}>About</a></Button>
+                            ><a href="/#about" onClick={() => { navigate('/') }} style={{ color: "white", textDecoration: 'none' }}>About</a></Button>
                         </Hidden>
                     </div>
                     <div>
