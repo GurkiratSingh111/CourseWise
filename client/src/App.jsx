@@ -5,6 +5,8 @@ import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import LandingPage from './components/LandingPage';
 import AllCourses from './components/AllCourses';
+import AdminLogin from './components/AdminLogin';
+import AdminSignup from './components/AdminSignup';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,8 @@ const router = createBrowserRouter([
   },
   { path: "/login", element: <LoginPage /> },
   { path: "/signup", element: <SignupPage /> },
+  { path: "/adminlogin", element: <AdminLogin /> },
+  { path: "/adminsignup", element: <AdminSignup /> }
 
 ]);
 

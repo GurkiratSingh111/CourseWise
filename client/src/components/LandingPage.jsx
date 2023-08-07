@@ -70,7 +70,7 @@ const LandingPage = () => {
                     <img src={slackLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
                 </div>
             </div>
-            <hr style={{ backgroundColor: "grey", height: "6px", width: "100vw", margin: " 100px 0px 0px" }} />
+            <hr id="about" style={{ backgroundColor: "grey", height: "6px", width: "100vw", margin: " 100px 0px 0px" }} />
             <div style={{ display: "flex", justifyContent: "center", margin: "20px", flexDirection: "column", alignItems: "center" }}>
                 <Typography variant="h4" style={{ fontWeight: 900, marginTop: "30px" }}>Achieve Your Goals With CourseWise</Typography>
                 <Typography variant='h6' style={{ width: "80%", color: "#7d8c95" }}>Explore, Learn, Excel: Your Gateway to Skillful Success! Discover a vast array of courses tailored to elevate your expertise.</Typography>
@@ -134,7 +134,7 @@ const LandingPage = () => {
             </div>
             <div style={{ color: "grey", backgroundColor: "black", height: "14rem", width: "100vw", display: "flex", justifyContent: "space-between" }}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    <Typography style={{ marginLeft: "2rem", marginTop: "3rem" }}>CourseWise</Typography>
+                    <Typography style={{ marginLeft: "2rem", marginTop: "3rem" }} onClick={navigate('/')}>CourseWise</Typography>
                     <Typography style={{ marginLeft: "2rem", marginTop: "1rem" }}>© 2023 CopyRight and All Rights Reserved</Typography>
                 </div>
                 <div style={{ display: 'flex', flexDirection: "row", margin: "3rem" }}>
