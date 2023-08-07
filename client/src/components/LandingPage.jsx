@@ -40,7 +40,7 @@ const LandingPage = () => {
     const theme = useTheme();
     const mdSize = useMediaQuery(theme.breakpoints.up('md'))
     return (
-        <div style={{ top: "63px", width: "100%", height: "100%", display: "flex", flexDirection: "column", left: "0px", overflowY: "scroll", overflowX: "hidden" }}>
+        <div id="home" style={{ top: "63px", width: "100%", height: "100%", display: "flex", flexDirection: "column", left: "0px", overflowY: "scroll", overflowX: "hidden" }}>
             <div style={{ top: "63px", width: "100%", height: "700px", display: "flex" }}>
                 <div style={{ width: mdSize ? "50%" : "100%", backgroundColor: "black", color: "white", display: "flex", flexDirection: "column", fontFamily: "serif" }}>
                     <h1 style={{ fontWeight: 900, width: "80%", fontSize: "xxx-large", marginTop: "160px", marginLeft: "55px", marginBottom: '15px' }}>Find your <span style={{ color: "#1fa95b" }}>perfect </span>course & grow your <span style={{ color: "#1fa95b" }}>skill.</span></h1>
@@ -63,7 +63,7 @@ const LandingPage = () => {
             </div>
             <div style={{ width: "100%", height: "150px", backgroundColor: "white", top: "800px", display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <h1 style={{ fontWeight: 900, fontFamily: "serif", fontSize: "xx-large" }}>Our Sponsors</h1>
-                <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
+                <div id="about" style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
                     <img src={amazonLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
                     <img src={appleLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
                     <img src={googleLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
@@ -71,7 +71,7 @@ const LandingPage = () => {
                     <img src={slackLogo} alt="" style={{ height: "4rem", width: "10%", margin: "1.3rem", marginRight: "3%", boxSizing: "border-box" }} />
                 </div>
             </div>
-            <hr id="about" style={{ backgroundColor: "grey", height: "6px", width: "100vw", margin: " 100px 0px 0px" }} />
+            <hr style={{ backgroundColor: "grey", height: "6px", width: "100vw", margin: " 100px 0px 0px" }} />
             <div style={{ display: "flex", justifyContent: "center", margin: "20px", flexDirection: "column", alignItems: "center" }}>
                 <Typography variant="h4" style={{ fontWeight: 900, marginTop: "30px" }}>Achieve Your Goals With CourseWise</Typography>
                 <Typography variant='h6' style={{ width: "80%", color: "#7d8c95" }}>Explore, Learn, Excel: Your Gateway to Skillful Success! Discover a vast array of courses tailored to elevate your expertise.</Typography>

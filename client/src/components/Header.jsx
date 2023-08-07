@@ -68,7 +68,7 @@ const Header = () => {
                                 }
                             }}
                                 onClick={() => { navigate('/') }}
-                            >Home</Button>
+                            ><a href="/#home" onClick={() => { navigate('/') }} style={{ color: "white", textDecoration: 'none' }}>Home</a></Button>
                             <Button style={{ color: "white", fontWeight: 700, margin: '8px' }} sx={{
                                 "&:before": {
                                     content: "''",
