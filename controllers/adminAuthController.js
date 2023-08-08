@@ -3,6 +3,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const adminSignup = async (req, res) => {
     const { email, name, password } = req.body;
+    console.log(email);
+    console.log(name);
+    console.log(password);
     if (!email || !password || !name) {
         res.json("Missing credentials")
     }
