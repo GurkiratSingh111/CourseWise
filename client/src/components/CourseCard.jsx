@@ -4,7 +4,7 @@ import homeImage from '../images/homeImage.png';
 const CourseCard = (props) => {
     const { name, price, description } = props.course;
     console.log(name);
-    return (<Card variant="elevation" sx={{ maxWidth: 354 }} style={{ marginTop: "5rem", marginLeft: "3rem" }}>
+    return (<Card variant="elevation" sx={{ maxWidth: 354 }} style={{ marginTop: "1rem", marginLeft: "3rem" }}>
         <CardMedia sx={{ height: 240 }} image={homeImage} title="course" />
         <CardContent style={{ display: "flex", justifyContent: "space-between" }}>
             <div style={{ display: "flex", flexDirection: "column", width: "70%" }}>
