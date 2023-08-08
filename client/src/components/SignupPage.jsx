@@ -1,7 +1,7 @@
 import { Button, Card, TextField, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import axios from 'axios';
 const SignupPage = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ const SignupPage = () => {
         setPassword(e.target.value);
     }
     const submitData = async () => {
-        const { data } = await axios.post('http://localhost:4000/api/v1/adminsignup', {
+        const { data } = await axios.post('http://localhost:4000/api/v1/usersignup', {
             name: username,
             email: email,
             password: password
@@ -25,8 +25,9 @@ const SignupPage = () => {
                 'Content-Type': 'application/json'
             }
         })
+        console.log(data);
         localStorage.removeItem("token");
-        localStorage.setItem("token", data.admin.token);
+        localStorage.setItem("token", data.user.token);
     }
 
     const submitHandler = () => {
