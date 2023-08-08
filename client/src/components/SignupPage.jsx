@@ -7,7 +7,7 @@ const SignupPage = () => {
     return (
         <div style={{ width: "100%", height: '100vh' }}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography variant="h4" style={{ fontFamily: "serif", fontWeight: 900, margin: "2rem" }}>CourseWise</Typography>
+                <Typography variant="h4" style={{ fontFamily: "serif", fontWeight: 900, margin: "2rem", cursor: "pointer" }} onClick={() => { navigate('/') }}>CourseWise</Typography>
                 <Button variant="h5" onClick={() => { navigate('/login') }} style={{ fontWeight: 700, margin: "2rem", width: "6rem", border: "1px solid black", borderRadius: "14px" }}>Log In </Button>
             </div>
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
