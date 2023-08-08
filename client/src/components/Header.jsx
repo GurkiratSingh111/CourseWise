@@ -2,21 +2,37 @@ import { AppBar, Box, Button, CssBaseline, Drawer, Hidden, IconButton, List, Lis
 import React from 'react'
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from 'react-router-dom';
-const drawerItems = ['Home', 'Courses', 'About', 'Contact', 'Register/Log In ', 'Teach on CourseWise']
+const drawerItems = ['Home', 'Courses', 'Register', 'Login', 'Teach on CourseWise']
 const Header = () => {
     const navigate = useNavigate();
     const [showDrawer, setShowDrawer] = React.useState(false);
-    const handleDrawerToggle = () => {
+    const handleDrawerToggle = (item) => {
+        if (item === 'Home') {
+            navigate('/');
+        }
+        else if (item === 'Courses') {
+            navigate('/allcourses');
+        }
+        else if (item === 'Register') {
+            navigate('/signup');
+        }
+        else if (item === 'Login') {
+            navigate('/login')
+        }
+        else if (item === 'Teach on CourseWise') {
+            navigate("/adminsignup");
+        }
+
         setShowDrawer((prevState) => !prevState);
     }
     const drawer = (
         <Box>
             <List >
                 {drawerItems.map((item) => {
+                    console.log(item)
                     return <ListItem key={item}>
-                        <ListItemButton onClick={handleDrawerToggle} sx={{
+                        <ListItemButton onClick={() => { handleDrawerToggle(item) }} sx={{
                             transition: 'all 0.5s ease-in-out',
-
                             '&:hover': {
                                 backgroundColor: '#22282a',
                                 color: "white"
@@ -90,25 +106,6 @@ const Header = () => {
                             }}
                                 onClick={() => { navigate('/allcourses') }}
                             >Courses</Button>
-                            <Button style={{ color: "white", fontWeight: 700, margin: '8px' }} sx={{
-                                "&:before": {
-                                    content: "''",
-                                    position: 'absolute',
-                                    width: '0',
-                                    height: '2px',
-                                    bottom: '-1px',
-                                    left: '50%',
-                                    transform: 'translate(-50%,0%)',
-                                    backgroundColor: 'white',
-                                    visibility: 'hidden',
-                                    transition: 'all 0.3s ease-in-out'
-                                },
-                                '&:hover:before': {
-                                    visibility: 'visible',
-                                    width: '100%'
-
-                                }
-                            }}>Contact</Button>
                             <Button style={{ color: "white", fontWeight: 700, margin: '8px' }} sx={{
                                 "&:before": {
                                     content: "''",
