@@ -2,7 +2,10 @@ import { Button, Card, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { useSetRecoilState } from 'recoil';
+import { userState } from '../store/atoms/user';
 const SignupPage = () => {
+    const setUser = useSetRecoilState(userState);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,8 +29,12 @@ const SignupPage = () => {
             }
         })
         console.log(data);
+        const user = { userName: data.user.name, userEmail: data.user.email };
+        console.log(user);
         localStorage.removeItem("token");
         localStorage.setItem("token", data.user.token);
+        setUser(user);
+        navigate('/');
     }
 
     const submitHandler = () => {

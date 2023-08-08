@@ -2,8 +2,14 @@ import { AppBar, Box, Button, CssBaseline, Drawer, Hidden, IconButton, List, Lis
 import React from 'react'
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userEmailState } from '../store/selector/userEmail';
+import { userNameState } from '../store/selector/userName';
 const drawerItems = ['Home', 'Courses', 'Register', 'Login', 'Teach on CourseWise']
 const Header = () => {
+    const userName = useRecoilValue(userNameState);
+    const userEmail = useRecoilValue(userEmailState);
+    console.log("The email is", userName);
     const navigate = useNavigate();
     const [showDrawer, setShowDrawer] = React.useState(false);
     const handleDrawerToggle = (item) => {
@@ -128,43 +134,47 @@ const Header = () => {
                         </Hidden>
                     </div>
                     <div>
-                        <Hidden mdDown>
-                            <Button style={{
-                                color: "white",
-                                textTransform: 'none',
-                                fontWeight: '800',
-                                marginRight: "8px",
-                            }}
-                                sx={{
-                                    "&:before": {
-                                        content: "''",
-                                        position: 'absolute',
-                                        width: '0',
-                                        height: '2px',
-                                        bottom: '-1px',
-                                        left: '50%',
-                                        transform: 'translate(-50%,0%)',
-                                        backgroundColor: 'white',
-                                        visibility: 'hidden',
-                                        transition: 'all 0.3s ease-in-out'
-                                    },
-                                    '&:hover:before': {
-                                        visibility: 'visible',
-                                        width: '100%'
-                                    }
-                                }}
-                                onClick={() => { navigate('/login') }}>Log In</Button>
-                            <Button
-                                style={{
+                        {userName ? <span>Welcome, {userName} {userEmail}</span> :
+                            <Hidden mdDown>
+
+                                <Button style={{
                                     color: "white",
                                     textTransform: 'none',
-                                    backgroundColor: "#fcb83b",
-                                    color: 'black',
                                     fontWeight: '800',
-                                    boxShadow: "4px 4px 4px white"
+                                    marginRight: "8px",
                                 }}
-                                onClick={() => { navigate('/adminlogin') }}>Teach on CourseWise</Button>
-                        </Hidden>
+                                    sx={{
+                                        "&:before": {
+                                            content: "''",
+                                            position: 'absolute',
+                                            width: '0',
+                                            height: '2px',
+                                            bottom: '-1px',
+                                            left: '50%',
+                                            transform: 'translate(-50%,0%)',
+                                            backgroundColor: 'white',
+                                            visibility: 'hidden',
+                                            transition: 'all 0.3s ease-in-out'
+                                        },
+                                        '&:hover:before': {
+                                            visibility: 'visible',
+                                            width: '100%'
+                                        }
+                                    }}
+                                    onClick={() => { navigate('/login') }}>Log In</Button>
+                                <Button
+                                    style={{
+                                        color: "white",
+                                        textTransform: 'none',
+                                        backgroundColor: "#fcb83b",
+                                        color: 'black',
+                                        fontWeight: '800',
+                                        boxShadow: "4px 4px 4px white"
+                                    }}
+                                    onClick={() => { navigate('/adminlogin') }}>Teach on CourseWise</Button>
+                            </Hidden>
+                        }
+
                     </div>
                 </Toolbar>
             </AppBar>
