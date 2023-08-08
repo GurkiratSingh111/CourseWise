@@ -130,7 +130,9 @@ const LandingPage = () => {
                 <div style={{ display: "flex", flexDirection: "column", width: "25%", marginLeft: "2rem" }}>
                     <Typography variant='h5' style={{ fontWeight: 900 }}>Become an instructor</Typography>
                     <Typography variant='body'>Instructor from around the world teach millions of students on CourseWise. We provide the tools and skills to teach what you love.</Typography>
-                    <Button style={{ backgroundColor: "#fcb83b", color: "black", marginTop: "1.5rem", marginBottom: "1rem" }}>Start teaching today</Button>
+                    <Button style={{ backgroundColor: "#fcb83b", color: "black", marginTop: "1.5rem", marginBottom: "1rem" }}
+                        onClick={() => { navigate('/adminsignup') }}
+                    >Start teaching today</Button>
                 </div>
             </div>
             <div style={{ color: "grey", backgroundColor: "black", height: "14rem", width: "100vw", display: "flex", justifyContent: "space-between" }}>
