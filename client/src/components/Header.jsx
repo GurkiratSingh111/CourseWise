@@ -37,7 +37,7 @@ const Header = () => {
                 style={{ background: '#22282a', position: "fixed", fontFamily: "serif" }}>
                 <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
                     <Typography variant="h5" display="block" onClick={() => { navigate('/') }} style={{ fontWeight: 900, fontFamily: "serif", cursor: "pointer" }}>
-                        CourseWise
+                        <a href="/#home" onClick={() => { navigate('/') }} style={{ color: "white", textDecoration: 'none' }}>CourseWise</a>
                     </Typography>
                     <Hidden mdUp>
                         <IconButton
@@ -67,7 +67,7 @@ const Header = () => {
                                     width: '100%'
                                 }
                             }}
-                                onClick={() => { navigate('/') }}
+
                             ><a href="/#home" onClick={() => { navigate('/') }} style={{ color: "white", textDecoration: 'none' }}>Home</a></Button>
                             <Button style={{ color: "white", fontWeight: 700, margin: '8px' }} sx={{
                                 "&:before": {
