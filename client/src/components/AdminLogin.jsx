@@ -2,7 +2,12 @@ import { Button, Card, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { useSetRecoilState } from 'recoil';
+import { userState } from '../store/atoms/user';
+
 const AdminLogin = () => {
+    const setUser = useSetRecoilState(userState);
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -21,16 +26,16 @@ const AdminLogin = () => {
                 'Content-Type': 'application/json'
             }
         })
-        localStorage.removeItem("token");
+        const user = { userName: data.admin.name, userEmail: data.admin.email };
         localStorage.setItem("token", data.admin.token);
-
+        setUser(user);
+        navigate('/');
     }
 
     const submitHandler = () => {
         submitData();
     }
 
-    const navigate = useNavigate();
     return (
         <div style={{ width: "100%", height: '100vh' }}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
