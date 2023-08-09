@@ -12,7 +12,10 @@ import Instructor from '../images/instructor.png'
 import 'react-alice-carousel/lib/alice-carousel.css';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userNameState } from '../store/selector/userName';
 const LandingPage = () => {
+    const userName = useRecoilValue(userNameState);
     const navigate = useNavigate();
     const [courses, setCourses] = useState([]);
     const fetchData = async () => {
@@ -45,7 +48,7 @@ const LandingPage = () => {
                 <div style={{ width: mdSize ? "50%" : "100%", backgroundColor: "black", color: "white", display: "flex", flexDirection: "column", fontFamily: "serif" }}>
                     <h1 style={{ fontWeight: 900, width: "80%", fontSize: "xxx-large", marginTop: "160px", marginLeft: "55px", marginBottom: '15px' }}>Find your <span style={{ color: "#1fa95b" }}>perfect </span>course & grow your <span style={{ color: "#1fa95b" }}>skill.</span></h1>
                     <p style={{ color: "grey", marginLeft: "55px", marginRight: "10px" }}>Unlock Your Potential: Discover a World of Knowledge and Expertise on Our Cutting-Edge Course Selling App. Elevate Your Skills, Empower Your Journey - Start Learning Today!</p>
-                    <Button
+                    {!userName ? <Button
                         style={{
                             marginLeft: "50px",
                             width: "30%",
@@ -56,6 +59,18 @@ const LandingPage = () => {
                             boxShadow: "4px 4px 4px white"
                         }}
                         onClick={() => { navigate('/signup') }}>Get Started</Button>
+                        : <Button
+                            style={{
+                                marginLeft: "50px",
+                                width: "30%",
+                                textTransform: 'none',
+                                backgroundColor: "#fcb83b",
+                                color: 'black',
+                                fontWeight: '900',
+                                boxShadow: "4px 4px 4px white"
+                            }}
+                            onClick={() => { navigate('/allcourses') }}>Explore Courses</Button>}
+
                 </div>
                 <Hidden mdDown>
                     <div style={{ width: "50%", backgroundImage: `url(${homeImage})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></div>
@@ -125,7 +140,7 @@ const LandingPage = () => {
                         boxShadow: "4px 4px 4px white",
                     }}>Explore All Courses</Button>
             </div>
-            <div style={{ backgroundColor: "white", width: "100vw", height: "32rem", marginTop: "4rem", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "0.2rem" }}>
+            {!userName && <div style={{ backgroundColor: "white", width: "100vw", height: "32rem", marginTop: "4rem", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "0.2rem" }}>
                 <img src={Instructor} alt="" style={{ height: "18rem" }} />
                 <div style={{ display: "flex", flexDirection: "column", width: "25%", marginLeft: "2rem" }}>
                     <Typography variant='h5' style={{ fontWeight: 900 }}>Become an instructor</Typography>
@@ -134,7 +149,7 @@ const LandingPage = () => {
                         onClick={() => { navigate('/adminsignup') }}
                     >Start teaching today</Button>
                 </div>
-            </div>
+            </div>}
             <div style={{ color: "grey", backgroundColor: "black", height: "14rem", width: "100vw", display: "flex", justifyContent: "space-between" }}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <Typography style={{ marginLeft: "2rem", marginTop: "3rem" }} onClick={() => { navigate('/') }}>CourseWise</Typography>
@@ -145,7 +160,7 @@ const LandingPage = () => {
                     <span>Website Terms</span>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 

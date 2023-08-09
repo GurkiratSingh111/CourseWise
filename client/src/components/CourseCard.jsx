@@ -1,10 +1,12 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
 import homeImage from '../images/homeImage.png';
+import { useNavigate } from 'react-router-dom';
 const CourseCard = (props) => {
-    const { name, price, description } = props.course;
+    const navigate = useNavigate();
+    const { name, price, description, _id } = props.course;
     console.log(name);
-    return (<Card variant="elevation" sx={{ maxWidth: 354 }} style={{ marginTop: "1rem", marginLeft: "3rem" }}>
+    return (<Card onClick={() => { navigate(`/course/${_id}`) }} variant="elevation" sx={{ maxWidth: 354 }} style={{ marginTop: "1rem", marginLeft: "3rem" }}>
         <CardMedia sx={{ height: 240 }} image={homeImage} title="course" />
         <CardContent style={{ display: "flex", justifyContent: "space-between" }}>
             <div style={{ display: "flex", flexDirection: "column", width: "70%" }}>

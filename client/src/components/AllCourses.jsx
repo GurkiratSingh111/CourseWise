@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import CourseCard from './CourseCard';
 import { Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const AllCourses = () => {
     const [courses, setCourses] = useState([]);
@@ -20,6 +21,7 @@ const AllCourses = () => {
             <Typography variant="h2" style={{ margin: "auto", marginTop: "2rem", width: "30%", fontWeight: 900, fontFamily: "serif" }}>Popular Courses</Typography>
             <div style={{ color: "white", backgroundColor: "black", height: '100vh', maxWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
                 {courses.map((course) => {
+                    console.log(course);
                     return <CourseCard course={course} />
                 })}
             </div>

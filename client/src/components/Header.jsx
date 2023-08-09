@@ -19,6 +19,7 @@ const Header = () => {
             userName: null,
             userEmail: null
         })
+        navigate('/');
     }
     const handleDrawerToggle = (item) => {
         if (item === 'Home') {

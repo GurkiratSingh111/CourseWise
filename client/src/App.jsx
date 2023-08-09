@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { userState } from './store/atoms/user';
+import Course from './components/Course';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,8 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <LandingPage /> },
-      { path: "/allcourses", element: <AllCourses /> }
+      { path: "/allcourses", element: <AllCourses /> },
+      { path: "/course/:courseId", element: <Course /> }
     ],
   },
   { path: "/login", element: <LoginPage /> },
