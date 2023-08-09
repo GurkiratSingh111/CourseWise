@@ -28,9 +28,7 @@ const SignupPage = () => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(data);
         const user = { userName: data.user.name, userEmail: data.user.email };
-        console.log(user);
         localStorage.setItem("token", data.user.token);
         setUser(user);
         navigate('/');
