@@ -7,7 +7,6 @@ import LandingPage from './components/LandingPage';
 import AllCourses from './components/AllCourses';
 import AdminLogin from './components/AdminLogin';
 import AdminSignup from './components/AdminSignup';
-import { RecoilRoot } from 'recoil';
 
 const router = createBrowserRouter([
   {
@@ -27,9 +26,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
+    <RouterProvider router={router} />
   );
 }
 

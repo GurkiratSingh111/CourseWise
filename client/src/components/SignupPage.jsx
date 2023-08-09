@@ -31,7 +31,6 @@ const SignupPage = () => {
         console.log(data);
         const user = { userName: data.user.name, userEmail: data.user.email };
         console.log(user);
-        localStorage.removeItem("token");
         localStorage.setItem("token", data.user.token);
         setUser(user);
         navigate('/');

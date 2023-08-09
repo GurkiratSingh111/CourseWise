@@ -6,6 +6,7 @@ const app = express();
 const adminAuthRouter = require('./routes/adminAuthRoutes');
 const userAuthRouter = require('./routes/userAuthRoutes');
 const courseRouter = require('./routes/courseRoutes');
+const meRouter = require('./routes/meRoute');
 const connectDB = require('./db/connect');
 const cors = require("cors");
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/v1', adminAuthRouter);
 app.use('/api/v1', userAuthRouter);
 app.use('/api/v1', courseRouter);
+app.use('/api/v1', meRouter);
 
 const PORT = process.env.PORT || 4000;
 

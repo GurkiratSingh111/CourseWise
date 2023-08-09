@@ -13,7 +13,7 @@ const userSignup = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
     const user = await UserModel.create({ email, name, password: hashPassword });
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_USER_SECRET, {
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_LIFETIME
     })
     res.status(201).json({
@@ -37,7 +37,7 @@ const userLogin = async (req, res) => {
     if (!isPasswordCorrect) {
         res.json("Invalid Credentials");
     }
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_USER_SECRET, {
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_LIFETIME
     })
     res.status(201).json({
