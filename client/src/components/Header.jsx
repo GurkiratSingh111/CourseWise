@@ -2,16 +2,24 @@ import { AppBar, Box, Button, CssBaseline, Drawer, Hidden, IconButton, List, Lis
 import React from 'react'
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userEmailState } from '../store/selector/userEmail';
 import { userNameState } from '../store/selector/userName';
+import { userState } from '../store/atoms/user';
 const drawerItems = ['Home', 'Courses', 'Register', 'Login', 'Teach on CourseWise']
 const Header = () => {
+    const setUser = useSetRecoilState(userState);
     const userName = useRecoilValue(userNameState);
-    const userEmail = useRecoilValue(userEmailState);
     console.log("The email is", userName);
     const navigate = useNavigate();
     const [showDrawer, setShowDrawer] = React.useState(false);
+    const logOutUser = () => {
+        localStorage.removeItem("token");
+        setUser({
+            userName: null,
+            userEmail: null
+        })
+    }
     const handleDrawerToggle = (item) => {
         if (item === 'Home') {
             navigate('/');
@@ -134,7 +142,20 @@ const Header = () => {
                         </Hidden>
                     </div>
                     <div>
-                        {userName ? <span>Welcome, {userName} {userEmail}</span> :
+                        {userName ? <span>
+                            <span style={{ fontWeight: 800 }}>Welcome, {userName}</span>
+                            <Button
+                                style={{
+                                    color: "white",
+                                    textTransform: 'none',
+                                    backgroundColor: "#fcb83b",
+                                    color: 'black',
+                                    fontWeight: '800',
+                                    boxShadow: "4px 4px 4px white",
+                                    marginLeft: "2rem"
+                                }}
+                                onClick={logOutUser}>Log Out</Button>
+                        </span> :
                             <Hidden mdDown>
 
                                 <Button style={{
