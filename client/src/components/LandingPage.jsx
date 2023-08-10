@@ -17,6 +17,8 @@ import { userNameState } from '../store/selector/userName';
 import { userRoleState } from '../store/selector/userRole';
 const LandingPage = () => {
     const role = useRecoilValue(userRoleState);
+    const userRole = role === 'user';
+    const adminRole = role === 'admin';
     console.log('The role is', role);
     const userName = useRecoilValue(userNameState);
     const navigate = useNavigate();
@@ -49,9 +51,12 @@ const LandingPage = () => {
         <div id="home" style={{ top: "63px", width: "100%", height: "100%", display: "flex", flexDirection: "column", left: "0px", overflowY: "scroll", overflowX: "hidden" }}>
             <div style={{ top: "63px", width: "100%", height: "700px", display: "flex" }}>
                 <div style={{ width: mdSize ? "50%" : "100%", backgroundColor: "black", color: "white", display: "flex", flexDirection: "column", fontFamily: "serif" }}>
-                    <h1 style={{ fontWeight: 900, width: "80%", fontSize: "xxx-large", marginTop: "160px", marginLeft: "55px", marginBottom: '15px' }}>Find your <span style={{ color: "#1fa95b" }}>perfect </span>course & grow your <span style={{ color: "#1fa95b" }}>skill.</span></h1>
-                    <p style={{ color: "grey", marginLeft: "55px", marginRight: "10px" }}>Unlock Your Potential: Discover a World of Knowledge and Expertise on Our Cutting-Edge Course Selling App. Elevate Your Skills, Empower Your Journey - Start Learning Today!</p>
-                    {!userName ? <Button
+                    {adminRole ? <span><h1 style={{ fontWeight: 900, width: "80%", fontSize: "xxx-large", marginTop: "160px", marginLeft: "55px", marginBottom: '15px' }}> Craft <span style={{ color: "#1fa95b" }}> Courses </span> Inspire Young <span style={{ color: "#1fa95b" }}> Minds</span></h1>
+                        <p style={{ color: "grey", marginLeft: "55px", marginRight: "10px" }}>Elevate your teaching with our intuitive platform, designed for instructors who want to share knowledge, create engaging courses, and reach a global audience</p></span> : <span>
+                        <h1 style={{ fontWeight: 900, width: "80%", fontSize: "xxx-large", marginTop: "160px", marginLeft: "55px", marginBottom: '15px' }}>Find your <span style={{ color: "#1fa95b" }}>perfect </span>course & grow your <span style={{ color: "#1fa95b" }}>skill.</span></h1>
+                        <p style={{ color: "grey", marginLeft: "55px", marginRight: "10px" }}>Unlock Your Potential: Discover a World of Knowledge and Expertise on Our Cutting-Edge Course Selling App. Elevate Your Skills, Empower Your Journey - Start Learning Today!</p></span>}
+
+                    {!userName && <Button
                         style={{
                             marginLeft: "50px",
                             width: "30%",
@@ -61,19 +66,30 @@ const LandingPage = () => {
                             fontWeight: '900',
                             boxShadow: "4px 4px 4px white"
                         }}
-                        onClick={() => { navigate('/signup') }}>Get Started</Button>
-                        : <Button
-                            style={{
-                                marginLeft: "50px",
-                                width: "30%",
-                                textTransform: 'none',
-                                backgroundColor: "#fcb83b",
-                                color: 'black',
-                                fontWeight: '900',
-                                boxShadow: "4px 4px 4px white"
-                            }}
-                            onClick={() => { navigate('/allcourses') }}>Explore Courses</Button>}
-
+                        onClick={() => { navigate('/signup') }}>Get Started</Button>}
+                    {userRole && <Button
+                        style={{
+                            marginLeft: "50px",
+                            width: "30%",
+                            textTransform: 'none',
+                            backgroundColor: "#fcb83b",
+                            color: 'black',
+                            fontWeight: '900',
+                            boxShadow: "4px 4px 4px white"
+                        }}
+                        onClick={() => { navigate('/allcourses') }}>Explore Courses</Button>}
+                    {adminRole && <Button
+                        style={{
+                            marginLeft: "50px",
+                            width: "30%",
+                            textTransform: 'none',
+                            backgroundColor: "#fcb83b",
+                            color: 'black',
+                            fontWeight: '900',
+                            boxShadow: "4px 4px 4px white"
+                        }}
+                        onClick={() => { navigate('admin/createcourse') }}>Create a New Course</Button>
+                    }
                 </div>
                 <Hidden mdDown>
                     <div style={{ width: "50%", backgroundImage: `url(${homeImage})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></div>

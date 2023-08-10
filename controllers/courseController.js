@@ -1,6 +1,7 @@
 const Course = require('../models/CourseModel');
 const Admin = require('../models/AdminModel');
-
+const fs = require('fs');
+const cloudinary = require('cloudinary').v2
 const getAllCourses = async (req, res) => {
     const courses = await Course.find({});
     res.json({ courses });
@@ -30,7 +31,19 @@ const getAdminCourse = async (req, res) => {
     const courses = await Course.find({ createdBy: req.user.userId })
     res.json({ courses });
 }
+const uploadCourseImage = async (req, res) => {
+    console.log(req.files.image);
+    const result = await cloudinary.uploader.upload(req.files.image.tempFilePath, {
+        use_filename: true,
+        folder: 'fileUpload',
+    });
+    //console.log(result);
+    fs.unlinkSync(req.files.image.tempFilePath); //delete the images stored in tmp folder
+    //sending the file to cloudinary but not storing them locally
+    res.status(201).json({ image: { src: result.secure_url } })
+
+}
 
 module.exports = {
-    addCourse, deleteCourse, updateCourse, getAllCourses, getCourse, getAdminCourse
+    addCourse, deleteCourse, updateCourse, getAllCourses, getCourse, getAdminCourse, uploadCourseImage
 }
