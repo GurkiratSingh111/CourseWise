@@ -14,7 +14,10 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userNameState } from '../store/selector/userName';
+import { userRoleState } from '../store/selector/userRole';
 const LandingPage = () => {
+    const role = useRecoilValue(userRoleState);
+    console.log('The role is', role);
     const userName = useRecoilValue(userNameState);
     const navigate = useNavigate();
     const [courses, setCourses] = useState([]);

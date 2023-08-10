@@ -39,23 +39,27 @@ function App() {
           "Authorization": "Bearer " + localStorage.getItem("token")
         }
       })
+      console.log(response.data);
 
       if (response.data.name && response.data.email) {
         setUser({
           userName: response.data.name,
-          userEmail: response.data.email
+          userEmail: response.data.email,
+          role: response.data.role
         })
       } else {
         setUser({
           userName: null,
-          userEmail: null
+          userEmail: null,
+          role: null,
         })
       }
     } catch (e) {
 
       setUser({
         userName: null,
-        userEmail: null
+        userEmail: null,
+        role: null,
       })
     }
   };

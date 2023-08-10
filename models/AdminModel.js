@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const AdminSchema = new mongoose.Schema({
+    role: {
+        type: String,
+        default: "admin"
+    },
     name: {
         type: String,
         required: [true, "Please provide name"],

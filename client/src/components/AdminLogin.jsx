@@ -26,7 +26,7 @@ const AdminLogin = () => {
                 'Content-Type': 'application/json'
             }
         })
-        const user = { userName: data.admin.name, userEmail: data.admin.email };
+        const user = { userName: data.admin.name, userEmail: data.admin.email, role: "admin" };
         localStorage.setItem("token", data.admin.token);
         setUser(user);
         navigate('/');
