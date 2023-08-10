@@ -25,10 +25,10 @@ function Course() {
     return <div style={{ height: "100%", width: "100%", marginTop: "3.5rem" }}>
         <div style={{
             color: "white", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
-            backgroundImage: `url(${courseDetails.course.image})`, backgroundSize: 'cover', marginTop: "2rem", height: "300px", opacity: "1"
+            backgroundImage: `url(${courseDetails?.course?.image})`, backgroundSize: 'cover', marginTop: "2rem", height: "300px", opacity: "1"
         }}>
-            <Typography variant="h3" style={{ marginBottom: "1rem" }}>{courseDetails.course.name}</Typography>
-            <Typography variant="h6" style={{ color: "orange", marginBottom: "1rem" }}>$ {courseDetails.course.price}</Typography>
+            <Typography variant="h3" style={{ marginBottom: "1rem" }}>{courseDetails?.course?.name}</Typography>
+            <Typography variant="h6" style={{ color: "orange", marginBottom: "1rem" }}>$ {courseDetails?.course?.price}</Typography>
             <Button variant="outlined" style={{ marginBottom: "1rem", borderColor: "orange", color: "orange" }} sx={{
                 '&:hover': {
                     backgroundColor: "#3c3c3b"
@@ -36,7 +36,7 @@ function Course() {
             }}>Buy Course</Button>
         </div>
         <Typography variant="h5" style={{ marginTop: "3rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: 'center' }}>
-            {courseDetails.course.description}
+            {courseDetails?.course?.description}
         </Typography>
     </div>
 }

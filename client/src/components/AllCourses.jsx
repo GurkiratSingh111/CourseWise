@@ -17,9 +17,9 @@ const AllCourses = () => {
 
 
     return (
-        <div style={{ color: "white", backgroundColor: "black", height: '100%', marginTop: "3rem", maxWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={{ color: "black", marginTop: "4rem", maxWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", }}>
             <Typography variant="h2" style={{ margin: "auto", marginTop: "2rem", width: "30%", fontWeight: 900, fontFamily: "serif" }}>Popular Courses</Typography>
-            <div style={{ color: "white", backgroundColor: "black", height: '100vh', maxWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
+            <div style={{ color: "white", height: '100vh', maxWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
                 {courses.map((course) => {
                     console.log(course);
                     return <CourseCard course={course} />
