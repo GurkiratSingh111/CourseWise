@@ -6,10 +6,15 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userEmailState } from '../store/selector/userEmail';
 import { userNameState } from '../store/selector/userName';
 import { userState } from '../store/atoms/user';
-const drawerItems = ['Home', 'Courses', 'Register', 'Login', 'Teach on CourseWise']
+import { userRoleState } from '../store/selector/userRole';
+
 const Header = () => {
+    const role = useRecoilValue(userRoleState);
     const setUser = useSetRecoilState(userState);
     const userName = useRecoilValue(userNameState);
+    const userdrawerItems = ['Home', 'Courses', 'Log Out'];
+    const admindrawerItems = ['Home', 'Courses', 'Create Course', 'My Courses', 'Log Out'];
+    const drawerItems = role === 'user' ? userdrawerItems : role === 'admin' ? admindrawerItems : ['Home', 'Courses', 'Register', 'Login', 'Teach on CourseWise'];
     console.log("The email is", userName);
     const navigate = useNavigate();
     const [showDrawer, setShowDrawer] = React.useState(false);
@@ -37,11 +42,20 @@ const Header = () => {
         else if (item === 'Teach on CourseWise') {
             navigate("/adminsignup");
         }
-
+        else if (item === "Log Out") {
+            logOutUser();
+        }
+        else if (item === 'Create Course') {
+            navigate('/admin/createcourse');
+        }
+        else if (item === 'My Courses') {
+            navigate('/');
+        }
         setShowDrawer((prevState) => !prevState);
     }
     const drawer = (
-        <Box>
+        <Box style={{ marginTop: "2rem" }}>
+            <Typography variant="overline" style={{ margin: "2rem", marginTop: "10rem", fontWeight: 900, fontSize: "12px" }}>Welcome, {userName}</Typography>
             <List >
                 {drawerItems.map((item) => {
                     console.log(item)
@@ -142,7 +156,7 @@ const Header = () => {
                             ><a href="/#about" onClick={() => { navigate('/') }} style={{ color: "white", textDecoration: 'none' }}>About</a></Button>
                         </Hidden>
                     </div>
-                    <div>
+                    <div><Hidden mdDown>
                         {userName ? <span>
                             <span style={{ fontWeight: 800 }}>Welcome, {userName}</span>
                             <Button
@@ -156,46 +170,43 @@ const Header = () => {
                                     marginLeft: "2rem"
                                 }}
                                 onClick={logOutUser}>Log Out</Button>
-                        </span> :
-                            <Hidden mdDown>
-
-                                <Button style={{
+                        </span> : <span><Button style={{
+                            color: "white",
+                            textTransform: 'none',
+                            fontWeight: '800',
+                            marginRight: "8px",
+                        }}
+                            sx={{
+                                "&:before": {
+                                    content: "''",
+                                    position: 'absolute',
+                                    width: '0',
+                                    height: '2px',
+                                    bottom: '-1px',
+                                    left: '50%',
+                                    transform: 'translate(-50%,0%)',
+                                    backgroundColor: 'white',
+                                    visibility: 'hidden',
+                                    transition: 'all 0.3s ease-in-out'
+                                },
+                                '&:hover:before': {
+                                    visibility: 'visible',
+                                    width: '100%'
+                                }
+                            }}
+                            onClick={() => { navigate('/login') }}>Log In</Button>
+                            <Button
+                                style={{
                                     color: "white",
                                     textTransform: 'none',
+                                    backgroundColor: "#fcb83b",
+                                    color: 'black',
                                     fontWeight: '800',
-                                    marginRight: "8px",
+                                    boxShadow: "4px 4px 4px white"
                                 }}
-                                    sx={{
-                                        "&:before": {
-                                            content: "''",
-                                            position: 'absolute',
-                                            width: '0',
-                                            height: '2px',
-                                            bottom: '-1px',
-                                            left: '50%',
-                                            transform: 'translate(-50%,0%)',
-                                            backgroundColor: 'white',
-                                            visibility: 'hidden',
-                                            transition: 'all 0.3s ease-in-out'
-                                        },
-                                        '&:hover:before': {
-                                            visibility: 'visible',
-                                            width: '100%'
-                                        }
-                                    }}
-                                    onClick={() => { navigate('/login') }}>Log In</Button>
-                                <Button
-                                    style={{
-                                        color: "white",
-                                        textTransform: 'none',
-                                        backgroundColor: "#fcb83b",
-                                        color: 'black',
-                                        fontWeight: '800',
-                                        boxShadow: "4px 4px 4px white"
-                                    }}
-                                    onClick={() => { navigate('/adminlogin') }}>Teach on CourseWise</Button>
-                            </Hidden>
+                                onClick={() => { navigate('/adminlogin') }}>Teach on CourseWise</Button></span>
                         }
+                    </Hidden>
 
                     </div>
                 </Toolbar>
