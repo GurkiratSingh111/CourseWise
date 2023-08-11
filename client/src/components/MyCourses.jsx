@@ -25,7 +25,6 @@ const MyCourses = () => {
         </div>
     }
 
-
     return (
         <div style={{ color: "black", marginTop: "4rem", maxWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
             <Typography variant="h2" style={{ margin: "auto", marginTop: "2rem", width: "30%", fontWeight: 900, fontFamily: "serif" }}>My Courses</Typography>

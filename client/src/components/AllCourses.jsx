@@ -15,6 +15,11 @@ const AllCourses = () => {
         fetchData();
     }, [])
 
+    if (courses.length === 0) {
+        return <div style={{ color: "black", marginTop: "4rem", maxWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", }}>
+            <Typography variant="h2" style={{ margin: "auto", marginTop: "2rem", width: "40%", fontWeight: 900, fontFamily: "serif" }}>No courses found</Typography>
+        </div>
+    }
 
     return (
         <div style={{ color: "black", marginTop: "4rem", maxWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", }}>
