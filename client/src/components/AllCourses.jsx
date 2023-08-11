@@ -22,7 +22,7 @@ const AllCourses = () => {
             <div style={{ color: "white", height: '100vh', maxWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
                 {courses.map((course) => {
                     console.log(course);
-                    return <CourseCard course={course} />
+                    return <CourseCard width='true' height="true" course={course} />
                 })}
             </div>
         </div>

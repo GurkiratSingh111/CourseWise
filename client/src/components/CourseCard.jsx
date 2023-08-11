@@ -3,15 +3,17 @@ import React from 'react'
 import homeImage from '../images/homeImage.png';
 import { useNavigate } from 'react-router-dom';
 const CourseCard = (props) => {
+    const isWidth = props.width;
+    const isHeight = props.height;
     const navigate = useNavigate();
     const { name, price, description, _id, image } = props.course;
     console.log(name);
     return (<Card onClick={() => { navigate(`/course/${_id}`) }}
         variant="elevation"
         sx={{
-            height: 400, maxWidth: 400, width: 340, transition: "ease-out 0.2s", cursor: "pointer",
+            maxWidth: 400, width: isWidth === 'true' ? 340 : 'default', height: isHeight === 'true' ? 400 : 'default', transition: "ease-out 0.2s", cursor: "pointer",
             '&:hover': {
-                width: 360, height: 420
+                width: isWidth && 400, height: isHeight && 420
             }
         }}
         style={{
