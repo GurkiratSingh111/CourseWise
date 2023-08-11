@@ -12,10 +12,11 @@ const meRoute = async (req, res) => {
             res.json("No user/admin exist");
         }
         const { name, email, role } = admin;
-        res.json({ name, email, role });
+        return res.json({ name, email, role });
     }
     const { name, email, role } = user;
-    res.json({ name, email, role });
+    console.log(user);
+    return res.json({ name, email, role });
 }
 
 module.exports = {

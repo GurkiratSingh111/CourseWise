@@ -13,6 +13,7 @@ import { useSetRecoilState } from 'recoil';
 import { userState } from './store/atoms/user';
 import Course from './components/Course';
 import CreateCourse from './components/CreateCourse';
+import MyCourses from './components/MyCourses';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
       { index: true, element: <LandingPage /> },
       { path: "/allcourses", element: <AllCourses /> },
       { path: "/course/:courseId", element: <Course /> },
-      { path: "/admin/createcourse", element: <CreateCourse /> }
+      { path: "/admin/createcourse", element: <CreateCourse /> },
+      { path: "/admin/mycourses", element: <MyCourses /> }
     ],
   },
   { path: "/login", element: <LoginPage /> },

@@ -49,7 +49,7 @@ const Header = () => {
             navigate('/admin/createcourse');
         }
         else if (item === 'My Courses') {
-            navigate('/');
+            navigate('/admin/mycourses');
         }
         setShowDrawer((prevState) => !prevState);
     }
@@ -130,7 +130,6 @@ const Header = () => {
                                 '&:hover:before': {
                                     visibility: 'visible',
                                     width: '100%'
-
                                 }
                             }}
                                 onClick={() => { navigate('/allcourses') }}
@@ -154,6 +153,27 @@ const Header = () => {
                                 }
                             }}
                             ><a href="/#about" onClick={() => { navigate('/') }} style={{ color: "white", textDecoration: 'none' }}>About</a></Button>
+                            {role === 'admin' && <Button style={{ color: "white", fontWeight: 700, margin: '8px' }} sx={{
+                                "&:before": {
+                                    content: "''",
+                                    position: 'absolute',
+                                    width: '0',
+                                    height: '2px',
+                                    bottom: '-1px',
+                                    left: '50%',
+                                    transform: 'translate(-50%,0%)',
+                                    backgroundColor: 'white',
+                                    visibility: 'hidden',
+                                    transition: 'all 0.3s ease-in-out'
+                                },
+                                '&:hover:before': {
+                                    visibility: 'visible',
+                                    width: '100%'
+
+                                }
+                            }}
+                                onClick={() => { navigate('/admin/mycourses') }}
+                            >My Courses</Button>}
                         </Hidden>
                     </div>
                     <div><Hidden mdDown>
