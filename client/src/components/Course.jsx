@@ -1,4 +1,4 @@
-import { Card, Grid } from "@mui/material";
+import { Box, Card, CircularProgress, Grid } from "@mui/material";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Typography, TextField, Button } from "@mui/material";
@@ -12,23 +12,35 @@ import { courseName, coursePrice, isCourseLoading, courseImage } from "../store/
 function Course() {
     let { courseId } = useParams();
     const [courseDetails, setCourse] = useRecoilState(courseState);
+    const [isLoading, setIsLoading] = useState(true);
 
     const getCourse = async () => {
         const response = await axios.get(`http://localhost:4000/api/v1/course/${courseId}`)
         console.log(response.data.course);
         setCourse({ isLoading: false, course: response.data.course });
+        setIsLoading(false);
     }
     useEffect(() => {
-        getCourse();
+        setIsLoading(true);
+        setTimeout(() => {
+            getCourse();
+        }, 1500);
+
     }, []);
+
+    if (isLoading === true) {
+        return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: "center", marginTop: "5rem" }}>
+            <CircularProgress size="20rem" sx={{ color: "black" }} />
+        </Box>
+    }
 
     return <div style={{ height: "100%", width: "100%", marginTop: "3.5rem" }}>
         <div style={{
             color: "white", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
-            backgroundImage: `url(${courseDetails?.course?.image})`, backgroundSize: 'cover', marginTop: "2rem", height: "300px", opacity: "1"
+            backgroundImage: `url(${courseDetails.course.image})`, backgroundSize: 'cover', marginTop: "2rem", height: "300px", opacity: "1"
         }}>
-            <Typography variant="h3" style={{ marginBottom: "1rem" }}>{courseDetails?.course?.name}</Typography>
-            <Typography variant="h6" style={{ color: "orange", marginBottom: "1rem" }}>$ {courseDetails?.course?.price}</Typography>
+            <Typography variant="h3" style={{ marginBottom: "1rem" }}>{courseDetails.course.name}</Typography>
+            <Typography variant="h6" style={{ color: "orange", marginBottom: "1rem" }}>$ {courseDetails.course.price}</Typography>
             <Button variant="outlined" style={{ marginBottom: "1rem", borderColor: "orange", color: "orange" }} sx={{
                 '&:hover': {
                     backgroundColor: "#3c3c3b"
@@ -36,7 +48,7 @@ function Course() {
             }}>Buy Course</Button>
         </div>
         <Typography variant="h5" style={{ marginTop: "3rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: 'center' }}>
-            {courseDetails?.course?.description}
+            {courseDetails.course.description}
         </Typography>
     </div>
 }
