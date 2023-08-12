@@ -207,7 +207,7 @@ const Header = () => {
                     </div>
                     <div><Hidden mdDown>
                         {userName ? <span>
-                            <span style={{ fontWeight: 800 }}>Welcome, {userName}</span>
+                            <span style={{ marginRight: "1rem", fontWeight: 700 }}>Hi, {userName}</span>
                             <Button
                                 style={{
                                     color: "white",
@@ -216,7 +216,6 @@ const Header = () => {
                                     color: 'black',
                                     fontWeight: '800',
                                     boxShadow: "4px 4px 4px white",
-                                    marginLeft: "2rem"
                                 }}
                                 onClick={logOutUser}>Log Out</Button>
                         </span> : <span><Button style={{
