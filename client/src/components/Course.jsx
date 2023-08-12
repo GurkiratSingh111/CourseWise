@@ -14,7 +14,6 @@ import { userIdState } from "../store/selector/userId";
 function Course() {
     const [createdBy, setCreatedBy] = useState("");
     const id = useRecoilValue(userIdState);
-    console.log("ID =>>>>", id);
     const navigate = useNavigate();
     const role = useRecoilValue(userRoleState);
     const userRole = role === 'user';
@@ -27,7 +26,6 @@ function Course() {
     const getCourse = async () => {
         const response = await axios.get(`http://localhost:4000/api/v1/course/${courseId}`)
         setCreatedBy(response.data.course.createdBy);
-
         setCourse({ isLoading: false, course: response.data.course });
         setIsLoading(false);
     }
