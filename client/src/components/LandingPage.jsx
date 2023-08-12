@@ -12,10 +12,12 @@ import Instructor from '../images/instructor.png'
 import 'react-alice-carousel/lib/alice-carousel.css';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userNameState } from '../store/selector/userName';
 import { userRoleState } from '../store/selector/userRole';
+import { courseState } from '../store/atoms/course';
 const LandingPage = () => {
+    const setCourse = useSetRecoilState(courseState);
     const role = useRecoilValue(userRoleState);
     const userRole = role === 'user';
     const adminRole = role === 'admin';
@@ -88,7 +90,13 @@ const LandingPage = () => {
                             fontWeight: '900',
                             boxShadow: "4px 4px 4px white"
                         }}
-                        onClick={() => { navigate('admin/createcourse') }}>Create a New Course</Button>
+                        onClick={() => {
+                            setCourse({
+                                isLoading: true,
+                                course: null
+                            })
+                            navigate('admin/createcourse')
+                        }}>Create a New Course</Button>
                     }
                 </div>
                 <Hidden mdDown>

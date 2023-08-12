@@ -7,8 +7,10 @@ import { userEmailState } from '../store/selector/userEmail';
 import { userNameState } from '../store/selector/userName';
 import { userState } from '../store/atoms/user';
 import { userRoleState } from '../store/selector/userRole';
+import { courseState } from '../store/atoms/course';
 
 const Header = () => {
+    const setCourse = useSetRecoilState(courseState);
     const role = useRecoilValue(userRoleState);
     const setUser = useSetRecoilState(userState);
     const userName = useRecoilValue(userNameState);
@@ -193,7 +195,13 @@ const Header = () => {
 
                                 }
                             }}
-                                onClick={() => { navigate('/admin/createcourse') }}
+                                onClick={() => {
+                                    setCourse({
+                                        isLoading: true,
+                                        course: null
+                                    })
+                                    navigate('/admin/createcourse')
+                                }}
                             >Create Course</Button>}
                         </Hidden>
                     </div>
