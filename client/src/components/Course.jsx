@@ -39,9 +39,7 @@ function Course() {
         </Box>
     }
     const updateCourse = () => {
-
-
-
+        navigate('/admin/createcourse');
     }
     const deleteCourse = async () => {
         const response = await axios.delete(`http://localhost:4000/api/v1//courseadmin/${courseId}`, {

@@ -2,10 +2,15 @@ import { Button, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import createCourse from '../images/courselogo.png';
 import axios from 'axios';
+import { courseState } from '../store/atoms/course';
+import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 const CreateCourse = () => {
-    const [coursename, setCoursename] = useState("");
-    const [coursedescription, setCoursedescription] = useState("");
-    const [courseprice, setCourseprice] = useState("");
+    const navigate = useNavigate();
+    const [courseDetails, setCourse] = useRecoilState(courseState);
+    const [coursename, setCoursename] = useState(courseDetails.course?.name);
+    const [coursedescription, setCoursedescription] = useState(courseDetails.course?.description);
+    const [courseprice, setCourseprice] = useState(courseDetails.course?.price);
     const [courseimage, setCourseimage] = useState('');
     const coursenameInput = (e) => {
         setCoursename(e.target.value);
@@ -28,6 +33,28 @@ const CreateCourse = () => {
         console.log(response.data);
         setCourseimage(response.data.image.src);
     }
+    const updateCourse = async () => {
+        const response = await axios.patch(`http://localhost:4000/api/v1//courseadmin/${courseDetails.course._id}`, {
+            name: coursename,
+            price: courseprice,
+            description: coursedescription,
+            image: courseimage,
+        }, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token"),
+                'Content-Type': 'application/json'
+            }
+        })
+        setCoursename("");
+        setCourseprice("");
+        setCourseimage("");
+        setCoursedescription("");
+        setCourse({
+            isLoading: true,
+            course: null
+        })
+        navigate('/admin/mycourses');
+    }
     const submitCourse = async () => {
         const response = await axios.post("http://localhost:4000/api/v1/course", {
             name: coursename,
@@ -40,7 +67,14 @@ const CreateCourse = () => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(response);
+        setCoursename("");
+        setCourseprice("");
+        setCourseimage("");
+        setCoursedescription("");
+        setCourse({
+            isLoading: true,
+            course: null
+        })
     }
     return (
         <div style={{ backgroundColor: "#f7f7f7", color: "black", marginTop: "4rem", overflowY: "auto", height: "100vh", maxWidth: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -54,7 +88,7 @@ const CreateCourse = () => {
                         label='Image'>
                         <input type="file" id="image" accept="image/*" />
                     </Button>
-                    <Button
+                    {!courseDetails && <Button
                         style={{
                             color: "white",
                             textTransform: 'none',
@@ -63,7 +97,17 @@ const CreateCourse = () => {
                             fontWeight: '800',
                             boxShadow: "4px 4px 4px white"
                         }}
-                        onClick={submitCourse}>Submit</Button>
+                        onClick={submitCourse}>Submit</Button>}
+                    {courseDetails && <Button
+                        style={{
+                            color: "white",
+                            textTransform: 'none',
+                            backgroundColor: "#fcb83b",
+                            color: 'black',
+                            fontWeight: '800',
+                            boxShadow: "4px 4px 4px white"
+                        }}
+                        onClick={updateCourse}>Update Course</Button>}
                 </div>
 
                 <div style={{ maxWidth: "55%" }}>
