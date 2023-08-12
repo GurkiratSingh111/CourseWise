@@ -76,6 +76,7 @@ const CreateCourse = () => {
             isLoading: true,
             course: null
         })
+        navigate('/admin/mycourses')
     }
     return (
         <div style={{ backgroundColor: "#f7f7f7", color: "black", marginTop: "4rem", overflowY: "auto", height: "100vh", maxWidth: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -89,7 +90,7 @@ const CreateCourse = () => {
                         label='Image'>
                         <input type="file" id="image" accept="image/*" />
                     </Button>
-                    {!courseDetails && <Button
+                    {!courseDetails.course && <Button
                         style={{
                             color: "white",
                             textTransform: 'none',
@@ -99,7 +100,7 @@ const CreateCourse = () => {
                             boxShadow: "4px 4px 4px white"
                         }}
                         onClick={submitCourse}>Submit</Button>}
-                    {courseDetails && <Button
+                    {courseDetails.course && <Button
                         style={{
                             color: "white",
                             textTransform: 'none',
@@ -115,7 +116,7 @@ const CreateCourse = () => {
                     <img src={createCourse} alt="" style={{ height: "16rem", maxWidth: "100%" }} />
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
