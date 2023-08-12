@@ -8,9 +8,13 @@ import { courseState } from "../store/atoms/course";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { courseName, coursePrice, isCourseLoading, courseImage } from "../store/selector/course";
 import { userRoleState } from "../store/selector/userRole";
+import { userIdState } from "../store/selector/userId";
 
 
 function Course() {
+    const [createdBy, setCreatedBy] = useState("");
+    const id = useRecoilValue(userIdState);
+    console.log("ID =>>>>", id);
     const navigate = useNavigate();
     const role = useRecoilValue(userRoleState);
     const userRole = role === 'user';
@@ -18,10 +22,12 @@ function Course() {
     let { courseId } = useParams();
     const [courseDetails, setCourse] = useRecoilState(courseState);
     const [isLoading, setIsLoading] = useState(true);
+    let myCourse = id === createdBy;
 
     const getCourse = async () => {
         const response = await axios.get(`http://localhost:4000/api/v1/course/${courseId}`)
-        console.log(response.data.course);
+        setCreatedBy(response.data.course.createdBy);
+
         setCourse({ isLoading: false, course: response.data.course });
         setIsLoading(false);
     }
@@ -65,12 +71,12 @@ function Course() {
                     backgroundColor: "#3c3c3b"
                 }
             }}>Buy Course</Button>}
-            {adminRole && <Button onClick={updateCourse} variant="outlined" style={{ marginBottom: "1rem", borderColor: "black", color: "black" }} sx={{
+            {myCourse && adminRole && <Button onClick={updateCourse} variant="outlined" style={{ marginBottom: "1rem", borderColor: "black", color: "black" }} sx={{
                 '&:hover': {
                     backgroundColor: "#3c3c3b"
                 }
             }}>Update Course</Button>}
-            {adminRole && <Button onClick={deleteCourse} variant="outlined" style={{ marginBottom: "1rem", borderColor: "black", color: "black" }} sx={{
+            {(myCourse && adminRole) && <Button onClick={deleteCourse} variant="outlined" style={{ marginBottom: "1rem", borderColor: "black", color: "black" }} sx={{
                 '&:hover': {
                     backgroundColor: "#3c3c3b"
                 }

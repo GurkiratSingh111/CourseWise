@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const CreateCourse = () => {
     const navigate = useNavigate();
     const [courseDetails, setCourse] = useRecoilState(courseState);
+    console.log("course details", courseDetails);
     const [coursename, setCoursename] = useState(courseDetails.course?.name);
     const [coursedescription, setCoursedescription] = useState(courseDetails.course?.description);
     const [courseprice, setCourseprice] = useState(courseDetails.course?.price);

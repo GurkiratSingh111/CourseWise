@@ -30,7 +30,7 @@ const AdminSignup = () => {
                 'Content-Type': 'application/json'
             }
         })
-        const user = { userName: data.admin.name, userEmail: data.admin.email, role: "admin" };
+        const user = { userName: data.admin.name, userEmail: data.admin.email, role: "admin", id: data.admin._id };
         localStorage.setItem("token", data.admin.token);
         setUser(user);
         navigate('/');

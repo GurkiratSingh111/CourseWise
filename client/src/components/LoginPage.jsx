@@ -26,7 +26,7 @@ const LoginPage = () => {
                 'Content-Type': 'application/json'
             }
         })
-        const user = { userName: data.user.name, userEmail: data.user.email, role: "user" };
+        const user = { userName: data.user.name, userEmail: data.user.email, role: "user", id: data.user._id };
         localStorage.setItem("token", data.user.token);
         setUser(user);
         navigate('/');
