@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import CourseCard from './CourseCard';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const MyCourses = () => {
+    const navigate = useNavigate();
     const [courses, setCourses] = useState([]);
     const fetchData = async () => {
         const response = await axios.get('http://localhost:4000/api/v1/admin/courses', {
@@ -20,9 +22,26 @@ const MyCourses = () => {
     }, [])
 
     if (courses.length === 0) {
-        return <div style={{ color: "black", marginTop: "4rem", maxWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", }}>
-            <Typography variant="h2" style={{ margin: "auto", marginTop: "2rem", width: "40%", fontWeight: 900, fontFamily: "serif" }}>No courses found</Typography>
-        </div>
+        return <div style={{ backgroundColor: "black", color: "white", marginTop: "4rem", maxWidth: "100%", display: "flex", flexDirection: "column", height: "100vh" }}>
+            <Typography variant="h2" style={{ marginLeft: "2rem", marginTop: "4rem", fontWeight: 900, fontFamily: "serif" }}>No course created yet...</Typography>
+            <Typography variant="body1" style={{ marginLeft: "2rem", marginTop: "2rem", width: "50%", fontWeight: 900, fontFamily: "serif" }}>Your expertise and passion are the perfect foundation
+                for an exceptional course that will ignite curosity and drive in eager minds.Your knowledge has the power to shape the next generation of
+                learners</Typography>
+            <Button
+                style={{
+                    width: "15%",
+                    marginLeft: "2rem",
+                    marginTop: "2rem",
+                    color: "white",
+                    textTransform: 'none',
+                    backgroundColor: "#fcb83b",
+                    color: 'black',
+                    fontWeight: '800',
+                    boxShadow: "4px 4px 4px white",
+                }}
+                onClick={() => { navigate('/admin/createcourse') }}>Create Course</Button>
+
+        </div >
     }
 
     return (
