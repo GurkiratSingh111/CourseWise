@@ -8,6 +8,9 @@ const CourseCard = (props) => {
     const navigate = useNavigate();
     const { name, price, description, _id, image } = props.course;
     console.log(name);
+
+
+    const newDescription = description.slice(0, 35) + "...";
     return (<Card onClick={() => { navigate(`/course/${_id}`) }}
         variant="elevation"
         sx={{
@@ -24,7 +27,7 @@ const CourseCard = (props) => {
         <CardContent style={{ display: "flex", justifyContent: "space-between" }}>
             <div style={{ display: "flex", flexDirection: "column", width: "70%" }}>
                 <Typography variant='subtitle1' style={{ fontWeight: 900 }}>{name}</Typography>
-                <Typography variant='body2'>{description}</Typography>
+                <Typography variant='body2'>{newDescription}</Typography>
             </div>
             <div style={{ height: "2rem", width: "3rem", borderRadius: "6px", backgroundColor: '#fcb83b', display: "flex", justifyContent: "center", alignItems: "center", fontWeight: "800" }}>
                 <span>${price}</span>
