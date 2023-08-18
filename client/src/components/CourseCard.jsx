@@ -1,6 +1,5 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
-import homeImage from '../images/homeImage.png';
 import { useNavigate } from 'react-router-dom';
 const CourseCard = (props) => {
     const isWidth = props.width;

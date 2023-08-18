@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import CourseCard from './CourseCard';
-import { Button, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const MyCourses = () => {
     const navigate = useNavigate();
     const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(true);
     const fetchData = async () => {
+        setLoading(true);
         const response = await axios.get('http://localhost:4000/api/v1/admin/courses', {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token"),
@@ -16,10 +18,19 @@ const MyCourses = () => {
         });
         console.log(response);
         setCourses(response.data.courses);
+        setLoading(false);
     }
     useEffect(() => {
-        fetchData();
+        setTimeout(() => {
+            fetchData();
+        }, 1000);
     }, [])
+    if (loading) {
+        return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: "center", marginTop: "5rem" }}>
+            <CircularProgress size="20rem" sx={{ color: "black" }} />
+        </Box>
+
+    }
 
     if (courses.length === 0) {
         return <div style={{ backgroundColor: "black", color: "white", marginTop: "4rem", maxWidth: "100%", display: "flex", flexDirection: "column", height: "100vh" }}>
@@ -32,7 +43,6 @@ const MyCourses = () => {
                     width: "15%",
                     marginLeft: "2rem",
                     marginTop: "2rem",
-                    color: "white",
                     textTransform: 'none',
                     backgroundColor: "#fcb83b",
                     color: 'black',
