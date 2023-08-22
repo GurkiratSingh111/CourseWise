@@ -40,7 +40,6 @@ const AdminSignup = () => {
         submitData();
     }
 
-
     return (
         <div style={{ width: "100%", height: '100vh' }}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>

@@ -18,13 +18,16 @@ function Course() {
     const role = useRecoilValue(userRoleState);
     const userRole = role === 'user';
     const adminRole = role === 'admin';
+    console.log("The role is", role);
     let { courseId } = useParams();
     const [courseDetails, setCourse] = useRecoilState(courseState);
     const [isLoading, setIsLoading] = useState(true);
     let myCourse = id === createdBy;
+    console.log(myCourse, id, createdBy);
 
     const getCourse = async () => {
         const response = await axios.get(`http://localhost:4000/api/v1/course/${courseId}`)
+        console.log(response.data.course);
         setCreatedBy(response.data.course.createdBy);
         setCourse({ isLoading: false, course: response.data.course });
         setIsLoading(false);
