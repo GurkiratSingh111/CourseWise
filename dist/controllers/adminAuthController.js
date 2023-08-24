@@ -40,6 +40,7 @@ const adminSignup = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             email: email,
             name: name,
             token,
+            _id: admin._id
         },
     });
 });
@@ -65,6 +66,7 @@ const adminLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             email: admin.email,
             name: admin.name,
             token,
+            _id: admin._id
         },
     });
 });

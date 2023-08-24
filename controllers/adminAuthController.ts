@@ -35,6 +35,7 @@ export const adminSignup = async (req: Request, res: Response) => {
       email: email,
       name: name,
       token,
+      _id: admin._id
     },
   });
 };
@@ -59,6 +60,7 @@ export const adminLogin = async (req: Request, res: Response) => {
       email: admin.email,
       name: admin.name,
       token,
+      _id: admin._id
     },
   });
 };

@@ -21,7 +21,7 @@ const AdminSignup = () => {
         setPassword(e.target.value);
     }
     const submitData = async () => {
-        const { data } = await axios.post('http://localhost:4000/api/v1/adminsignup', {
+        const {data} = await axios.post('http://localhost:4000/api/v1/adminsignup', {
             name: username,
             email: email,
             password: password
@@ -30,6 +30,13 @@ const AdminSignup = () => {
                 'Content-Type': 'application/json'
             }
         })
+        console.log("This is the required data", data);
+        // setUser({
+        //     userName: response.data.name,
+        //     userEmail: response.data.email,
+        //     role: response.data.role,
+        //     id: response.data._id
+        //   })
         const user = { userName: data.admin.name, userEmail: data.admin.email, role: "admin", id: data.admin._id };
         localStorage.setItem("token", data.admin.token);
         setUser(user);
