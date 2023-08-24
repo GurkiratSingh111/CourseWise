@@ -6,6 +6,7 @@ import { courseState } from '../store/atoms/course';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 const CreateCourse = () => {
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const navigate = useNavigate();
     const [courseDetails, setCourse] = useRecoilState(courseState);
     console.log("course details", courseDetails);
@@ -32,6 +33,7 @@ const CreateCourse = () => {
             }
         })
         console.log(response.data);
+        setButtonDisabled(false);
         setCourseimage(response.data.image.src);
     }
     const updateCourse = async () => {
@@ -99,7 +101,7 @@ const CreateCourse = () => {
                             fontWeight: '800',
                             boxShadow: "4px 4px 4px white"
                         }}
-                        onClick={submitCourse}>Submit</Button>}
+                        onClick={submitCourse} disabled={buttonDisabled }>Submit</Button>}
                     {courseDetails.course && <Button
                         style={{
                             color: "white",
@@ -109,7 +111,7 @@ const CreateCourse = () => {
                             fontWeight: '800',
                             boxShadow: "4px 4px 4px white"
                         }}
-                        onClick={updateCourse}>Update Course</Button>}
+                        onClick={updateCourse} disabled={buttonDisabled }>Update Course</Button>}
                 </div>
 
                 <div style={{ maxWidth: "55%" }}>
