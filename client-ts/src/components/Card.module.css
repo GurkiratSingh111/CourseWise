@@ -1,0 +1,13 @@
+.card {
+  background-color: white;
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.cardImage {
+  height: 5rem;
+  width: 6rem;
+}
+.createdBy {
+  display: flex;
+}

@@ -1,35 +1,82 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RootLayout from './components/RootLayout';
+import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage';
+import LandingPage from './components/LandingPage';
+import AllCourses from './components/AllCourses';
+import AdminLogin from './components/AdminLogin';
+import AdminSignup from './components/AdminSignup';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useSetRecoilState } from 'recoil';
+import { userState } from './store/atoms/user';
+import Course from './components/Course';
+import CreateCourse from './components/CreateCourse';
+import MyCourses from './components/MyCourses';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { index: true, element: <LandingPage /> },
+      { path: "/allcourses", element: <AllCourses /> },
+      { path: "/course/:courseId", element: <Course /> },
+      { path: "/admin/createcourse", element: <CreateCourse /> },
+      { path: "/admin/mycourses", element: <MyCourses /> }
+    ],
+  },
+  { path: "/login", element: <LoginPage /> },
+  { path: "/signup", element: <SignupPage /> },
+  { path: "/adminlogin", element: <AdminLogin /> },
+  { path: "/adminsignup", element: <AdminSignup /> }
+
+]);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const setUser = useSetRecoilState(userState);
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/api/v1/me", {
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+      })
+      console.log("These are the details", response.data);
 
+      if (response.data.name && response.data.email) {
+        setUser({
+          userName: response.data.name,
+          userEmail: response.data.email,
+          role: response.data.role,
+          id: response.data._id
+        })
+      } else {
+        setUser({
+          userName: null,
+          userEmail: null,
+          role: null,
+          id: null,
+        })
+      }
+    } catch (e) {
+
+      setUser({
+        userName: null,
+        userEmail: null,
+        role: null,
+        id: null
+      })
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, [])
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <RouterProvider router={router} />
+  );
 }
 
-export default App
+export default App;
