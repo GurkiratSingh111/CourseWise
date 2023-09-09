@@ -1,9 +1,8 @@
 import { AppBar, Box, Button, CssBaseline, Drawer, Hidden, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { userEmailState } from '../store/selector/userEmail';
 import { userNameState } from '../store/selector/userName';
 import { userState } from '../store/atoms/user';
 import { userRoleState } from '../store/selector/userRole';
@@ -24,7 +23,9 @@ const Header = () => {
         localStorage.removeItem("token");
         setUser({
             userName: null,
-            userEmail: null
+            userEmail: null,
+            role: null,
+            id: null
         })
         navigate('/');
     }
@@ -198,7 +199,15 @@ const Header = () => {
                                 onClick={() => {
                                     setCourse({
                                         isLoading: true,
-                                        course: null
+                                        course: {
+                                            name: "",
+                                            description: "",
+                                            price: 0,
+                                            imageLink: "",
+                                            createdBy: "",
+                                            published: false,
+                                            id: null,
+                                        }
                                     })
                                     navigate('/admin/createcourse')
                                 }}
@@ -210,7 +219,7 @@ const Header = () => {
                             <span style={{ marginRight: "1rem", fontWeight: 700 }}>Hi, {userName}</span>
                             <Button
                                 style={{
-                                    color: "white",
+                                    
                                     textTransform: 'none',
                                     backgroundColor: "#fcb83b",
                                     color: 'black',
@@ -245,7 +254,7 @@ const Header = () => {
                             onClick={() => { navigate('/login') }}>Log In</Button>
                             <Button
                                 style={{
-                                    color: "white",
+                                    
                                     textTransform: 'none',
                                     backgroundColor: "#fcb83b",
                                     color: 'black',

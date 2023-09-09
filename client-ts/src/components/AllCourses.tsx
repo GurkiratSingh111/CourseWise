@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import CourseCard from './CourseCard';
 import { Box, CircularProgress, Typography } from '@mui/material';
 

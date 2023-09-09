@@ -14,6 +14,7 @@ import { userState } from './store/atoms/user';
 import Course from './components/Course';
 import CreateCourse from './components/CreateCourse';
 import MyCourses from './components/MyCourses';
+import UpdateCourse from './components/UpdateCourse';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/allcourses", element: <AllCourses /> },
       { path: "/course/:courseId", element: <Course /> },
       { path: "/admin/createcourse", element: <CreateCourse /> },
+      {path: "/admin/updatecourse", element: <UpdateCourse/>},
       { path: "/admin/mycourses", element: <MyCourses /> }
     ],
   },

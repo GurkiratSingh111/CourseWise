@@ -7,10 +7,9 @@ type courseType = {
         id: number,
         name: string,
         price: number,
-        image: string,
+        imageLink: string,
         description: string,
         published: boolean,
-        createdBy: string,
         } | null;  
     };
 
@@ -60,7 +59,7 @@ export const courseImage = selector({
     get: ({ get }) => {
         const state : courseType = get(courseState);
         if (state.course) {
-            return state.course.image;
+            return state.course.imageLink;
         }
         return "";
     },

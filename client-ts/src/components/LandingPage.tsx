@@ -1,5 +1,5 @@
 import { Button, Hidden, Typography, useMediaQuery, useTheme } from '@mui/material'
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import homeImage from '../images/homeImage.png'
 import amazonLogo from '../images/amazon_logo.png';
 import appleLogo from '../images/apple_logo.png';
@@ -143,10 +143,9 @@ const LandingPage = () => {
             <div style={{ backgroundColor: "black", maxWidth: "100vw", height: "45rem", marginTop: "0px", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
                 <Typography variant="h3" style={{ color: "white", fontWeight: 900, fontFamily: "serif", marginTop: "1rem", marginBottom: "0px" }}>Our most popular & demanded courses </Typography>
                 <div style={{ display: "flex", marginTop: "0px", height: "30rem", maxWidth: "90%", alignItems: "center", flexDirection: "row", justifyContent: "center" }}>
-                    <AliceCarousel style={{ marginTop: "0px" }}
+                    <AliceCarousel 
                         mouseTracking
                         autoPlay
-                        autoFocus
                         infinite
                         autoPlayInterval={1000}
                         animationDuration={1500}
@@ -171,7 +170,7 @@ const LandingPage = () => {
                 <img src={Instructor} alt="" style={{ height: "18rem" }} />
                 <div style={{ display: "flex", flexDirection: "column", width: "25%", marginLeft: "2rem" }}>
                     <Typography variant='h5' style={{ fontWeight: 900 }}>Become an instructor</Typography>
-                    <Typography variant='body'>Instructor from around the world teach millions of students on CourseWise. We provide the tools and skills to teach what you love.</Typography>
+                    <Typography variant='body1'>Instructor from around the world teach millions of students on CourseWise. We provide the tools and skills to teach what you love.</Typography>
                     <Button style={{ backgroundColor: "#fcb83b", color: "black", marginTop: "1.5rem", marginBottom: "1rem" }}
                         onClick={() => { navigate('/adminsignup') }}
                     >Start teaching today</Button>

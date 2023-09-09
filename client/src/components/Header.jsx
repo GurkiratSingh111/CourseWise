@@ -210,7 +210,6 @@ const Header = () => {
                             <span style={{ marginRight: "1rem", fontWeight: 700 }}>Hi, {userName}</span>
                             <Button
                                 style={{
-                                    color: "white",
                                     textTransform: 'none',
                                     backgroundColor: "#fcb83b",
                                     color: 'black',

@@ -1,19 +1,16 @@
 import { Button, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import createCourse from '../images/courselogo.png';
 import axios from 'axios';
-import { courseState } from '../store/atoms/course';
-import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 const CreateCourse = () => {
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const navigate = useNavigate();
-    const [courseDetails, setCourse] = useRecoilState(courseState);
-    console.log("course details", courseDetails);
-    const [coursename, setCoursename] = useState(courseDetails.course?.name);
-    const [coursedescription, setCoursedescription] = useState(courseDetails.course?.description);
-    const [courseprice, setCourseprice] = useState(courseDetails.course?.price);
+     const [coursename, setCoursename] = useState("");
+     const [coursedescription, setCoursedescription] = useState("");
+     const [courseprice, setCourseprice] = useState(0);
     const [courseimage, setCourseimage] = useState('');
+
     const coursenameInput = (e) => {
         setCoursename(e.target.value);
     }
@@ -36,30 +33,8 @@ const CreateCourse = () => {
         setButtonDisabled(false);
         setCourseimage(response.data.image.src);
     }
-    const updateCourse = async () => {
-        const response = await axios.patch(`http://localhost:4000/api/v1//courseadmin/${courseDetails.course._id}`, {
-            name: coursename,
-            price: courseprice,
-            description: coursedescription,
-            image: courseimage,
-        }, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("token"),
-                'Content-Type': 'application/json'
-            }
-        })
-        setCoursename("");
-        setCourseprice("");
-        setCourseimage("");
-        setCoursedescription("");
-        setCourse({
-            isLoading: true,
-            course: null
-        })
-        navigate('/admin/mycourses');
-    }
     const submitCourse = async () => {
-        const response = await axios.post("http://localhost:4000/api/v1/course", {
+         await axios.post("http://localhost:4000/api/v1/course", {
             name: coursename,
             price: courseprice,
             description: coursedescription,
@@ -71,13 +46,9 @@ const CreateCourse = () => {
             }
         })
         setCoursename("");
-        setCourseprice("");
+        setCourseprice(0);
         setCourseimage("");
         setCoursedescription("");
-        setCourse({
-            isLoading: true,
-            course: null
-        })
         navigate('/admin/mycourses')
     }
     return (
@@ -89,29 +60,19 @@ const CreateCourse = () => {
                     <TextField style={{ margin: "0.5rem" }} value={coursedescription} id="outlined-email-input" label="Description" type="text" onChange={coursedescriptionInput} />
                     <TextField style={{ margin: "0.5rem" }} value={courseprice} id="outlined-price-input" label="Price in dollars" type="number" onChange={coursepriceInput} />
                     <Button style={{ margin: "0.5rem", height: "2rem" }} onChange={submitImage}
-                        label='Image'>
+                        >
                         <input type="file" id="image" accept="image/*" />
                     </Button>
-                    {!courseDetails.course && <Button
+                    <Button
                         style={{
-                            color: "white",
+                            
                             textTransform: 'none',
                             backgroundColor: "#fcb83b",
                             color: 'black',
                             fontWeight: '800',
                             boxShadow: "4px 4px 4px white"
                         }}
-                        onClick={submitCourse} disabled={buttonDisabled }>Submit</Button>}
-                    {courseDetails.course && <Button
-                        style={{
-                            color: "white",
-                            textTransform: 'none',
-                            backgroundColor: "#fcb83b",
-                            color: 'black',
-                            fontWeight: '800',
-                            boxShadow: "4px 4px 4px white"
-                        }}
-                        onClick={updateCourse} disabled={buttonDisabled }>Update Course</Button>}
+                        onClick={submitCourse} disabled={buttonDisabled}>Submit</Button>
                 </div>
 
                 <div style={{ maxWidth: "55%" }}>

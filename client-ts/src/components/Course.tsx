@@ -1,12 +1,10 @@
-import { Box, Card, CircularProgress, Grid } from "@mui/material";
+import { Box,CircularProgress} from "@mui/material";
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
-import { Typography, TextField, Button } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import axios from "axios";
-import HomeImage from '../images/homeImage.png'
 import { courseState } from "../store/atoms/course";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { courseName, coursePrice, isCourseLoading, courseImage } from "../store/selector/course";
 import { userRoleState } from "../store/selector/userRole";
 import { userIdState } from "../store/selector/userId";
 
@@ -19,17 +17,30 @@ function Course() {
     const userRole = role === 'user';
     const adminRole = role === 'admin';
     console.log("The role is", role);
-    let { courseId } = useParams();
+    const { courseId } = useParams();
     const [courseDetails, setCourse] = useRecoilState(courseState);
     const [isLoading, setIsLoading] = useState(true);
-    let myCourse = id === createdBy;
+    const myCourse = String(id) === String(createdBy);
     console.log(myCourse, id, createdBy);
 
     const getCourse = async () => {
         const response = await axios.get(`http://localhost:4000/api/v1/course/${courseId}`)
         console.log(response.data.course);
         setCreatedBy(response.data.course.createdBy);
-        setCourse({ isLoading: false, course: response.data.course });
+        console.log("lalalaalalalalaall", response.data.course);
+        const course = { 
+            isLoading: false, 
+            course: {
+                id: response.data.course._id,
+                name: response.data.course.name,
+                description: response.data.course.description,
+                price: response.data.course.price,
+                imageLink: response.data.course.image,
+                createdBy: response.data.course.createdBy,
+                published: response.data.course.published
+            }
+        }
+        setCourse(course);
         setIsLoading(false);
     }
     useEffect(() => {
@@ -46,7 +57,7 @@ function Course() {
         </Box>
     }
     const updateCourse = () => {
-        navigate('/admin/createcourse');
+        navigate('/admin/updatecourse');
     }
     const deleteCourse = async () => {
         const response = await axios.delete(`http://localhost:4000/api/v1//courseadmin/${courseId}`, {
@@ -63,7 +74,7 @@ function Course() {
     return <div style={{ height: "100%", width: "100%", marginTop: "3.5rem" }}>
         <div style={{
             color: "white", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
-            backgroundImage: `url(${courseDetails.course.image})`, filter: "brightness(80%)", backgroundSize: 'cover', marginTop: "2rem", height: "300px", opacity: "1"
+            backgroundImage: `url(${courseDetails.course.imageLink})`, filter: "brightness(80%)", backgroundSize: 'cover', marginTop: "2rem", height: "300px", opacity: "1"
         }}>
             <Typography variant="h3" style={{ marginBottom: "1rem", color: "black" }}>{courseDetails.course.name}</Typography>
             <Typography variant="h6" style={{ color: "black", marginBottom: "1rem" }}>$ {courseDetails.course.price}</Typography>
